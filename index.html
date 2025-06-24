@@ -1342,7 +1342,7 @@
             const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/main/`;
 
             const filesToLoad = [
-                { name: 'expansions', url: GITHUB_RAW_URL + 'expansions_6.json' },
+                //{ name: 'expansions', url: GITHUB_RAW_URL + 'expansions_6.json' },
                 { name: 'products_singles', url: GITHUB_RAW_URL + 'products_singles_6.json' },
                 { name: 'products_nonsingles', url: GITHUB_RAW_URL + 'products_nonsingles_6.json' },
                 { name: 'price_guide', url: GITHUB_RAW_URL + 'price_guide_6.json' }
@@ -1358,14 +1358,15 @@
                     const data = await response.json();
 
                     // Process data
-                    if (file.name === 'expansions') {
-                        data.expansions.forEach(exp => {
-                            expansionNameToIdMap[normalizeString(exp.enName)] = exp.idExpansion;
-                            if (exp.abbreviation) {
-                                expansionNameToIdMap[normalizeString(exp.abbreviation)] = exp.idExpansion;
-                            }
-                        });
-                    } else if (file.name === 'products_singles' || file.name === 'products_nonsingles') {
+                    //if (file.name === 'expansions') {
+                    //    data.expansions.forEach(exp => {
+                    //        expansionNameToIdMap[normalizeString(exp.enName)] = exp.idExpansion;
+                    //        if (exp.abbreviation) {
+                    //            expansionNameToIdMap[normalizeString(exp.abbreviation)] = exp.idExpansion;
+                    //        }
+                    //    });
+                    //} else 
+                    if (file.name === 'products_singles' || file.name === 'products_nonsingles') {
                         data.products.forEach(product => {
                             cardmarketProducts[product.idProduct] = product;
                         });
@@ -1387,7 +1388,7 @@
         function findProductInCardmarketDB({ name, set, number }) {
             const normalizedName = normalizeString(name);
             const normalizedSet = normalizeString(set);
-            const setExpansionId = expansionNameToIdMap[normalizedSet];
+            //const setExpansionId = expansionNameToIdMap[normalizedSet];
 
             let foundProduct = null;
             let bestMatchScore = -1;
@@ -1399,12 +1400,12 @@
                 let currentScore = 0;
 
                 if (product.idCategory === 1 && number && product.number === number) {
-                    if (normalizedProductName === normalizedName && productExpansionId === setExpansionId) {
+                    if (normalizedProductName === normalizedName && productExpansionId) {//=== setExpansionId) {
                         currentScore = 100;
                     }
                 }
 
-                if (currentScore < 90 && normalizedProductName === normalizedName && productExpansionId === setExpansionId) {
+                if (currentScore < 90 && normalizedProductName === normalizedName && productExpansionId) {//=== setExpansionId) {
                     currentScore = 90;
                 }
 
