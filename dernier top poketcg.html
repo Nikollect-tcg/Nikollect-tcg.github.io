@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéCollect - Gestion de collection Pokémon TCG</title>
+    <base target="_self">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        pokemon: {
+                            yellow: '#FFCB05',
+                            blue: '#2A75BB',
+                            red: '#CC0000'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .page-content { display: none; }
+        .page-content.active-page { display: block; }
+        .card-img { transition: transform 0.3s; }
+        .card-img:hover { transform: scale(1.05); }
+        .nav-btn.active { 
+            border-bottom: 3px solid #2A75BB;
+            color: #2A75BB;
+        }
+        .dark .nav-btn.active {
+            border-bottom-color: #FFCB05;
+            color: #FFCB05;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 min-h-full">
+    <!-- Header -->
+    <header class="bg-white dark:bg-gray-800 shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-pokeball text-pokemon-red text-2xl"></i>
+                <h1 class="text-xl font-bold text-gray-800 dark:text-white">PokéCollect</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+                    <i class="fas fa-moon dark:hidden"></i>
+                    <i class="fas fa-sun hidden dark:block"></i>
+                </button>
+                <div class="relative">
+                    <button id="user-menu-button" class="flex items-center space-x-2">
+                        <span class="font-medium text-gray-700 dark:text-gray-300">Utilisateur</span>
+                        <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Profil">
+                    </button>
+                    <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-10">
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Profil</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Paramètres</a>
+                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Déconnexion</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Navigation -->
+    <nav class="bg-white dark:bg-gray-800 shadow-sm">
+        <div class="container mx-auto px-4">
+            <div class="flex space-x-1 overflow-x-auto">
+                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition active" data-page="dashboard">
+                    <i class="fas fa-home mr-2"></i> Tableau de bord
+                </button>
+                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition" data-page="collection">
+                    <i class="fas fa-folder-open mr-2"></i> Collection
+                </button>
+                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition" data-page="wishlist">
+                    <i class="fas fa-star mr-2"></i> Wishlist
+                </button>
+                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition" data-page="inventory">
+                    <i class="fas fa-box-open mr-2"></i> Items scellés
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-6">
+        <!-- Dashboard Page -->
+        <div id="dashboard-page" class="page-content active-page">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Aperçu du Tableau de bord</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <!-- Module 1: Total Items (Collection + Sealed) -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400">Total Items (Cartes & Scellés)</p>
+                            <h3 id="dashboard-total-items-count" class="text-3xl font-bold text-gray-800 dark:text-white">0</h3>
+                        </div>
+                        <div class="p-3 rounded-full bg-pokemon-blue bg-opacity-10 text-pokemon-blue">
+                            <i class="fas fa-boxes text-xl"></i> <!-- Icon for combined items -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Module 2: Total Purchase Value (Collection + Sealed) -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400">Valeur d'achat totale</p>
+                            <h3 id="dashboard-total-purchase-value" class="text-3xl font-bold text-gray-800 dark:text-white">€0.00</h3>
+                        </div>
+                        <div class="p-3 rounded-full bg-green-500 bg-opacity-10 text-green-500">
+                            <i class="fas fa-euro-sign text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+                <!-- Module 3: Items dans wishlist (Stays as is) -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-gray-500 dark:text-gray-400">Items dans wishlist</p>
+                            <h3 id="dashboard-wishlist-count" class="text-3xl font-bold text-gray-800 dark:text-white">0</h3>
+                        </div>
+                        <div class="p-3 rounded-full bg-pokemon-red bg-opacity-10 text-pokemon-red">
+                            <i class="fas fa-star text-xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden mb-8">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <h3 class="text-lg font-medium text-gray-800 dark:text-white">Dernières cartes ajoutées</h3>
+                </div>
+                <div id="dashboard-recent-cards" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <!-- Les cartes récentes seront générées ici par JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Collection Page -->
+        <div id="collection-page" class="page-content">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Mes cartes</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden mb-8">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-800 dark:text-white">Mes cartes</h3>
+                        <div class="flex space-x-2">
+                            <button id="view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button id="view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
+                                <i class="fas fa-list"></i>
+                            </button>
+                            <select id="sets-filter" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
+                                <option value="all">Tous les sets</option>
+                                <option value="ev">Écarlate et Violet</option>
+                                <option value="eb">Épée et Bouclier</option>
+                                <option value="sl">Soleil et Lune</option>
+                                <option value="xy">XY</option>
+                                <option value="bw">Noir et Blanc</option>
+                                <option value="al">Appel des légendes</option>
+                                <option value="hs">HeartGold SoulSilver</option>
+                                <option value="pl">Platine</option>
+                                <option value="dp">Diamant et Perle</option>
+                                <option value="ex">Ex</option>
+                                <option value="wi">Wizards</option>
+                                <option value="pr">Promos</option>
+                                <option value="lp">Ligue Pokémon</option>
+                                <option value="ju">Jumbos</option>
+                                <option value="tk">Trainer Kits</option>
+                                <option value="wc">World Championships</option>
+                                <option value="mc">McDonald's</option>
+                                <option value="di">Divers</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Ajoutez un message ou une icône si la collection est vide -->
+                    <div id="collection-empty-message" class="hidden mt-4 text-gray-500 dark:text-gray-400">
+                        Votre collection est vide.
+                    </div>
+                </div>
+                <div id="collection-container">
+                <!-- Collection items will be generated here -->
+                </div>
+            </div>
+            <!-- Ajout du bouton flottant d'ajout de carte -->
+                <button id="add-card-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <!-- Modale d'ajout de carte -->
+                <div id="add-card-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+                    <div class="p-6">
+                      <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter une carte</h3>
+                        <button id="close-add-card-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                          <i class="fas fa-times"></i>
+                        </button>
+                      </div>
+                      <form id="add-card-form" class="space-y-4">
+                        <input type="text" name="name" placeholder="Nom de la carte" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                        <input type="text" name="number" placeholder="Numéro" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                        <select name="sets" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <option value="">Choisir un set</option>
+                            <!-- Les options de set seront générées par JavaScript -->
+                        </select>
+                        <select name="set" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" disabled>
+                            <option value="">Choisir une série</option>
+                            <!-- Options de séries seront ajoutées dynamiquement ici -->
+                        </select>
+                        <input type="url" name="imageFront" placeholder="URL de l'image (Recto)" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                        <input type="url" name="imageBack" placeholder="URL de l'image (Verso)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                        <input type="number" name="purchasePrice" placeholder="Prix d'achat (€)" required step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                        <select name="condition" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <option value="Mint">Mint</option>
+                            <option value="Near Mint">Near Mint</option>
+                            <option value="Légerement Joué">Légerement Joué</option>
+                            <option value="Modérément Joué">Modérément Joué</option>
+                            <option value="Très Joué">Très Joué</option>
+                        </select>
+                        <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter</button>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+        </div>
+
+        <!-- Wishlist Page -->
+        <div id="wishlist-page" class="page-content">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Ma Wishlist</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-800 dark:text-white">Cartes et items recherchés</h3>
+                        <div class="flex space-x-2">
+                            <button id="wishlist-view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button id="wishlist-view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Ajoutez un message ou une icône si la wishlist est vide -->
+                    <div id="wishlist-empty-message" class="hidden mt-4 text-gray-500 dark:text-gray-400">
+                        Votre wishlist est vide.
+                    </div>
+                </div>
+                <div id="wishlist-container" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <!-- Les items de la wishlist seront générés ici -->
+                </div>
+            </div>
+
+            <!-- Bouton flottant d'ajout à la wishlist -->
+            <button id="add-wishlist-item-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <!-- Modale d'ajout à la wishlist -->
+            <div id="add-wishlist-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+              <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+                <div class="p-6">
+                  <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter à la Wishlist</h3>
+                    <button id="close-add-wishlist-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <form id="add-wishlist-item-form" class="space-y-4">
+                    <input type="text" name="name" placeholder="Nom de la carte ou de l'item" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <input type="text" name="description" placeholder="Sets /Série / Numéro / Description" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <input type="url" name="image" placeholder="URL de l'image" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <input type="number" name="targetPrice" placeholder="Prix cible (€)" step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à la Wishlist</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Inventory Page -->
+        <div id="inventory-page" class="page-content">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Mes Items Scellés</h2>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden mb-8">
+                <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-lg font-medium text-gray-800 dark:text-white">Items scellés</h3>
+                        <div class="flex space-x-2">
+                            <button id="sealed-items-view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md">
+                                <i class="fas fa-th-large"></i>
+                            </button>
+                            <button id="sealed-items-view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
+                                <i class="fas fa-list"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Ajoutez un message ou une icône si l'inventaire est vide -->
+                    <div id="sealed-items-empty-message" class="hidden mt-4 text-gray-500 dark:text-gray-400">
+                        Votre inventaire d'items scellés est vide.
+                    </div>
+                </div>
+                <div id="sealed-items-container" class="divide-y divide-gray-200 dark:divide-gray-700">
+                    <!-- Les items scellés seront générés ici -->
+                </div>
+            </div>
+
+            <!-- Bouton flottant d'ajout à l'inventaire -->
+            <button id="add-sealed-item-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+                <i class="fas fa-plus"></i>
+            </button>
+
+            <!-- Modale d'ajout à l'inventaire -->
+            <div id="add-sealed-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+              <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+                <div class="p-6">
+                  <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter un item scellé</h3>
+                    <button id="close-add-sealed-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                      <i class="fas fa-times"></i>
+                    </button>
+                  </div>
+                  <form id="add-sealed-item-form" class="space-y-4">
+                    <input type="text" name="name" placeholder="Nom de l'item (ex: ETB Écarlate et Violet)" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <input type="text" name="description" placeholder="Description (ex: Boîte de 36 boosters)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <input type="url" name="image1" id="sealed-image1" placeholder="URL de l'image 1" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" data-image-index="1">
+                    <input type="url" name="image2" id="sealed-image2" placeholder="URL de l'image 2 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="2">
+                    <input type="url" name="image3" id="sealed-image3" placeholder="URL de l'image 3 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="3">
+                    <input type="url" name="image4" id="sealed-image4" placeholder="URL de l'image 4 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="4">
+                    <input type="number" name="quantity" placeholder="Quantité" required min="1" value="1" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <input type="number" name="purchasePrice" placeholder="Prix d'achat total (€)" step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                    <textarea name="notes" placeholder="Notes (état, provenance, etc.)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" rows="3"></textarea>
+                    <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à l'inventaire</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Card Detail Modal -->
+        <div id="card-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Détails de la carte</h3>
+                        <button id="close-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-4">
+                            <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 flex justify-center">
+                                <img id="modal-card-img" src="https://images.pokemontcg.io/sv3pt5/177.png" alt="Card" class="h-64 object-contain">
+                            </div>
+                            <div id="modal-image-controls" class="flex justify-center space-x-4">
+                                <!-- Les boutons Recto/Verso seront générés ici -->
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h4 id="modal-card-name" class="text-lg font-bold text-gray-800 dark:text-white mb-2">Pikachu ex</h4>
+                            <p id="modal-card-set" class="text-sm text-gray-500 dark:text-gray-400 mb-4">Scarlet & Violet - Paldean Fates #177</p>
+                            
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">État</label>
+                                    <select id="modal-condition" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
+                                        <option value="Mint">Mint</option>
+                                        <option value="Near Mint">Near Mint</option>
+                                        <option value="Légerement Joué">Légerement Joué</option>
+                                        <option value="Modérément Joué">Modérément Joué</option>
+                                        <option value="Très Joué">Très Joué</option>
+                                    </select>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix d'achat</label>
+                                    <div class="relative"> 
+                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                            <span class="text-gray-500">€</span>
+                                        </div>
+                                        <input type="number" id="modal-purchase-price" class="pl-8 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" value="10.00">
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
+                                    <textarea id="modal-notes" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" rows="3"></textarea>
+                                </div>
+                                
+                                <div class="flex space-x-3 pt-2">
+                                    <button id="save-card-btn" class="px-4 py-2 bg-pokemon-blue text-white rounded-md hover:bg-blue-700 transition">
+                                        Enregistrer
+                                    </button>
+                                    <button id="cancel-card-btn" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                                        Annuler
+                                    </button>
+                                    <button id="delete-card-btn" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition">
+                                        Supprimer
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <style>
+        #zoom-display {
+            width: 300px; /* Largeur de la loupe */
+            height: 420px; /* Hauteur de la loupe (ratio carte) */
+            background-repeat: no-repeat;
+            pointer-events: none; /* Pour que la loupe n'interfère pas avec la souris */
+        }
+    </style>
+    <!-- Sealed Item Detail Modal -->
+    <div id="sealed-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Détails de l'item scellé</h3>
+                    <button id="close-sealed-item-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="relative bg-gray-100 dark:bg-gray-700 rounded-lg p-4 flex justify-center">
+                            <img id="modal-sealed-img" src="" alt="Sealed Item" class="h-64 object-contain">
+                            <!-- Navigation buttons -->
+                            <button id="sealed-prev-img-btn" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hidden">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="sealed-next-img-btn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hidden">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <!-- Image counter -->
+                            <div id="sealed-img-counter" class="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded hidden">
+                                1 / 1
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 id="modal-sealed-name" class="text-lg font-bold text-gray-800 dark:text-white mb-2"></h4>
+                        <p id="modal-sealed-description" class="text-sm text-gray-500 dark:text-gray-400 mb-4"></p>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Quantité</label>
+                                <input type="number" id="modal-sealed-quantity" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" value="1" min="1">
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix d'achat total</label>
+                                <div class="relative"> 
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <span class="text-gray-500">€</span>
+                                    </div>
+                                    <input type="number" id="modal-sealed-purchase-price" class="pl-8 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" value="0.00">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
+                                <textarea id="modal-sealed-notes" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" rows="3"></textarea>
+                            </div>
+                            
+                            <div class="flex space-x-3 pt-2">
+                                <button id="save-sealed-item-btn" class="px-4 py-2 bg-pokemon-blue text-white rounded-md hover:bg-blue-700 transition">Enregistrer</button>
+                                <button id="cancel-sealed-item-btn" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">Annuler</button>
+                                <button id="delete-sealed-item-btn" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition">Supprimer</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Élément pour la loupe de zoom, positionné sur toute la page -->
+    <div id="zoom-display" class="hidden absolute bg-white border-2 border-pokemon-blue shadow-lg rounded-md overflow-hidden z-[100]"></div>
+
+    <script>
+        // --- Data Management ---
+        // Charger la collection depuis localStorage
+        function loadCollectionFromStorage() {
+          const data = localStorage.getItem('collectionData');
+          return data ? JSON.parse(data) : [];
+        }
+        
+        // Sauvegarder la collection dans localStorage
+        function saveCollectionToStorage(data) {
+          localStorage.setItem('collectionData', JSON.stringify(data));
+        }
+        
+        // Initialise la collection avec les données du localStorage
+        let collectionData = loadCollectionFromStorage();
+
+        // Charger la wishlist depuis localStorage
+        function loadWishlistFromStorage() {
+          const data = localStorage.getItem('wishlistData');
+          return data ? JSON.parse(data) : [];
+        }
+
+        // Sauvegarder la wishlist dans localStorage
+        function saveWishlistToStorage(data) {
+          localStorage.setItem('wishlistData', JSON.stringify(data));
+        }
+
+        // Initialise la wishlist avec les données du localStorage
+        let wishlistData = loadWishlistFromStorage();
+
+        // Charger l'inventaire des items scellés depuis localStorage
+        function loadSealedItemsFromStorage() {
+          const data = localStorage.getItem('sealedItemsData');
+          return data ? JSON.parse(data) : [];
+        }
+
+        // Sauvegarder l'inventaire des items scellés dans localStorage
+        function saveSealedItemsToStorage(data) {
+          localStorage.setItem('sealedItemsData', JSON.stringify(data));
+        }
+
+        // Initialise l'inventaire des items scellés avec les données du localStorage
+        let sealedItemsData = loadSealedItemsFromStorage();
+
+        // Variable pour les données des sets (pour le formulaire d'ajout)
+        // This object should ideally be defined once, perhaps globally or passed around.
+        const setSeriesData = { "ev": { name: "Écarlate et Violet", series: ["Destined Rivals", "Journey Together", "Prismatic Evolutions"] }, "eb": { name: "Épée et Bouclier", series: ["Crown Zenith", "Silver Tempest", "Brilliant Stars"] }, "sl": { name: "Soleil et Lune", series: [] }, "xy": { name: "XY", series: [] }, "bw": { name: "Noir et Blanc", series: [] }, "al": { name: "Appel des légendes", series: [] }, "hs": { name: "HeartGold SoulSilver", series: [] }, "pl": { name: "Platine", series: [] }, "dp": { name: "Diamant et Perle", series: [] }, "ex": { name: "Ex", series: [] }, "wi": { name: "Wizards", series: [] }, "pr": { name: "Promos", series: [] }, "lp": { name: "Ligue Pokémon", series: [] }, "ju": { name: "Jumbos", series: [] }, "tk": { name: "Trainer Kits", series: [] }, "wc": { name: "World Championships", series: [] }, "mc": { name: "McDonald's", series: [] }, "di": { name: "Divers", series: [] } };
+        
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme management
+            if (localStorage.getItem('theme') === 'dark' || 
+                (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+
+            // Theme toggle
+            document.getElementById('theme-toggle').addEventListener('click', function() {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+
+            // User menu toggle
+            const userMenuButton = document.getElementById('user-menu-button');
+            const userMenu = document.getElementById('user-menu');
+            
+            userMenuButton.addEventListener('click', function() {
+                userMenu.classList.toggle('hidden');
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
+                    userMenu.classList.add('hidden');
+                }
+            });
+
+            // Navigation
+            function showPage(pageId) {
+                // Hide all pages
+                document.querySelectorAll('.page-content').forEach(page => {
+                    page.classList.remove('active-page');
+                });
+                
+                // Show selected page
+                document.getElementById(`${pageId}-page`).classList.add('active-page');
+                
+                // Update navigation buttons
+                document.querySelectorAll('.nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.page === pageId) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Initialize page content if needed
+                if (pageId === 'dashboard') {
+                    updateDashboard();
+                } else if (pageId === 'collection') {
+                    collectionData = loadCollectionFromStorage(); // Recharger les données de la collection
+                    const currentCollectionView = localStorage.getItem('collectionView') || 'grid'; // Default to grid if not set
+                    const currentFilter = document.getElementById('sets-filter').value;
+                    generateCollectionItems(currentCollectionView, currentFilter);
+                    // Met à jour l'état visuel des boutons de vue pour la collection
+                    const viewGridBtn = document.getElementById('view-grid');
+                    const viewListBtn = document.getElementById('view-list');
+                    if (currentCollectionView === 'list') {
+                        viewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+                        viewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        viewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        viewGridBtn.classList.remove('bg-pokemon-blue', 'text-white');
+                    } else {
+                        viewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+                        viewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        viewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        viewListBtn.classList.remove('bg-pokemon-blue', 'text-white');
+                    }
+                } else if (pageId === 'wishlist') {
+                    wishlistData = loadWishlistFromStorage(); // Recharger les données de la wishlist
+                    const currentWishlistView = localStorage.getItem('wishlistView') || 'grid'; // Default to grid if not set
+                    generateWishlistItems(currentWishlistView);
+                    // Met à jour l'état visuel des boutons de vue pour la wishlist
+                    const wishlistViewGridBtn = document.getElementById('wishlist-view-grid');
+                    const wishlistViewListBtn = document.getElementById('wishlist-view-list');
+                    if (currentWishlistView === 'list') {
+                        wishlistViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+                        wishlistViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        wishlistViewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        wishlistViewGridBtn.classList.remove('bg-pokemon-blue', 'text-white');
+                    } else {
+                        wishlistViewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+                        wishlistViewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        wishlistViewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        wishlistViewListBtn.classList.remove('bg-pokemon-blue', 'text-white');
+                    }
+                } else if (pageId === 'inventory') {
+                    sealedItemsData = loadSealedItemsFromStorage(); // Recharger les données des items scellés
+                    const currentSealedItemsView = localStorage.getItem('sealedItemsView') || 'grid'; // Default to grid if not set
+                    generateSealedItems(currentSealedItemsView);
+                    // Met à jour l'état visuel des boutons de vue pour les items scellés
+                    const sealedItemsViewGridBtn = document.getElementById('sealed-items-view-grid');
+                    const sealedItemsViewListBtn = document.getElementById('sealed-items-view-list');
+                    if (currentSealedItemsView === 'list') {
+                        sealedItemsViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+                        sealedItemsViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        sealedItemsViewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white'); // Fix: Use sealedItemsViewGridBtn
+                        sealedItemsViewGridBtn.classList.remove('bg-pokemon-blue', 'text-white'); // Fix: Use sealedItemsViewGridBtn
+                    } else {
+                        sealedItemsViewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+                        sealedItemsViewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                        sealedItemsViewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white'); // Fix: Use sealedItemsViewListBtn
+                        sealedItemsViewListBtn.classList.remove('bg-pokemon-blue', 'text-white'); // Fix: Use sealedItemsViewListBtn
+                    }
+                }
+            }
+
+            // Set up navigation buttons
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    showPage(this.dataset.page);
+                });
+            });
+
+            // Show dashboard by default
+            showPage('dashboard');
+
+            // Collection view toggle
+            document.getElementById('view-grid').addEventListener('click', function() {
+                generateCollectionItems('grid', document.getElementById('sets-filter').value);
+                this.classList.add('bg-pokemon-blue', 'text-white');
+                document.getElementById('view-list').classList.remove('bg-pokemon-blue', 'text-white');
+                document.getElementById('view-list').classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                localStorage.setItem('collectionView', 'grid'); // Sauvegarde la préférence
+            });
+
+            document.getElementById('view-list').addEventListener('click', function() {
+                generateCollectionItems('list', document.getElementById('sets-filter').value);
+                this.classList.add('bg-pokemon-blue', 'text-white');
+                document.getElementById('view-grid').classList.remove('bg-pokemon-blue', 'text-white');
+                document.getElementById('view-grid').classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                localStorage.setItem('collectionView', 'list'); // Sauvegarde la préférence
+            });
+
+            // Sets filter
+            document.getElementById('sets-filter').addEventListener('change', function() {
+                const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
+                generateCollectionItems(currentView, this.value);
+            });
+
+            // --- Logique des formulaires d'ajout ---
+
+            // Remplir le select des sets pour l'ajout de carte
+            const setsSelect = document.querySelector('#add-card-form select[name="sets"]');
+            const setSelect = document.querySelector('#add-card-form select[name="set"]');
+            for (const setCode in setSeriesData) {
+                const option = document.createElement('option');
+                option.value = setCode;
+                option.textContent = setSeriesData[setCode].name;
+                setsSelect.appendChild(option);
+            }
+            setsSelect.addEventListener('change', () => {
+                const selectedSet = setsSelect.value;
+                setSelect.innerHTML = '<option value="">Choisir une série</option>';
+                setSelect.disabled = true;
+                if (selectedSet && setSeriesData[selectedSet] && setSeriesData[selectedSet].series.length > 0) {
+                    setSelect.disabled = false;
+                    setSeriesData[selectedSet].series.forEach(series => {
+                        const option = document.createElement('option');
+                        option.value = series;
+                        option.textContent = series;
+                        setSelect.appendChild(option);
+                    });
+                }
+            });
+
+            // Gestion de la modale d'ajout de carte
+            const addCardBtn = document.getElementById('add-card-btn');
+            const addCardModal = document.getElementById('add-card-modal');
+            const closeAddCardModal = document.getElementById('close-add-card-modal');
+            const addCardForm = document.getElementById('add-card-form');
+            
+            addCardBtn.addEventListener('click', () => addCardModal.classList.remove('hidden'));
+            closeAddCardModal.addEventListener('click', () => addCardModal.classList.add('hidden'));
+            addCardModal.addEventListener('click', e => {
+              if (e.target === addCardModal) addCardModal.classList.add('hidden');
+            });
+            
+            addCardForm.addEventListener('submit', function(e) {
+              e.preventDefault();
+              const formData = new FormData(addCardForm);
+              const newCard = Object.fromEntries(formData.entries());
+              newCard.id = Date.now();
+              newCard.purchasePrice = parseFloat(newCard.purchasePrice);
+              if (!newCard.set) {
+                  const setCode = newCard.sets;
+                  if (setCode && setSeriesData[setCode]) { newCard.set = setSeriesData[setCode].name; }
+              }
+              collectionData.push(newCard);
+              saveCollectionToStorage(collectionData);
+              addCardForm.reset();
+              addCardModal.classList.add('hidden');
+              const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
+              const currentFilter = document.getElementById('sets-filter').value;
+              generateCollectionItems(currentView, currentFilter);
+              updateDashboard();
+            });
+
+            // Gestion de la modale d'ajout à la wishlist
+            const addWishlistItemBtn = document.getElementById('add-wishlist-item-btn');
+            const addWishlistItemModal = document.getElementById('add-wishlist-item-modal');
+            const closeAddWishlistModal = document.getElementById('close-add-wishlist-modal');
+            const addWishlistItemForm = document.getElementById('add-wishlist-item-form');
+
+            addWishlistItemBtn.addEventListener('click', () => addWishlistItemModal.classList.remove('hidden'));
+            closeAddWishlistModal.addEventListener('click', () => addWishlistItemModal.classList.add('hidden'));
+            addWishlistItemModal.addEventListener('click', e => {
+                if (e.target === addWishlistItemModal) addWishlistItemModal.classList.add('hidden');
+            });
+
+            addWishlistItemForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(addWishlistItemForm);
+                const newItem = Object.fromEntries(formData.entries());
+                newItem.id = Date.now();
+                newItem.targetPrice = parseFloat(newItem.targetPrice) || 0;
+                wishlistData.push(newItem);
+                saveWishlistToStorage(wishlistData);
+                addWishlistItemForm.reset();
+                addWishlistItemModal.classList.add('hidden');
+                generateWishlistItems();
+                updateDashboard();
+            });
+
+            // Gestion de la modale d'ajout à l'inventaire
+            const addSealedItemBtn = document.getElementById('add-sealed-item-btn');
+            const addSealedItemModal = document.getElementById('add-sealed-item-modal');
+            const closeAddSealedModal = document.getElementById('close-add-sealed-modal');
+            const addSealedItemForm = document.getElementById('add-sealed-item-form');
+
+            addSealedItemBtn.addEventListener('click', () => addSealedItemModal.classList.remove('hidden'));
+            closeAddSealedModal.addEventListener('click', () => addSealedItemModal.classList.add('hidden'));
+            addSealedItemModal.addEventListener('click', e => {
+                if (e.target === addSealedItemModal) addSealedItemModal.classList.add('hidden');
+            });
+
+            // Logic for multiple image inputs in add sealed item form
+            const sealedImageInputs = [
+                document.getElementById('sealed-image1'),
+                document.getElementById('sealed-image2'),
+                document.getElementById('sealed-image3'),
+                document.getElementById('sealed-image4')
+            ];
+
+            function updateSealedImageInputsVisibility() {
+                for (let i = 0; i < sealedImageInputs.length; i++) {
+                    const currentInput = sealedImageInputs[i];
+                    const nextInput = sealedImageInputs[i + 1];
+
+                    if (currentInput && currentInput.value.trim() !== '') {
+                        if (nextInput) {
+                            nextInput.classList.remove('hidden');
+                        }
+                    } else {
+                        // If current input is empty, hide all subsequent inputs and clear their values
+                        for (let j = i + 1; j < sealedImageInputs.length; j++) {
+                            sealedImageInputs[j].classList.add('hidden');
+                            sealedImageInputs[j].value = ''; // Clear value when hiding
+                        }
+                    }
+                }
+            }
+
+            // Attach event listeners to image inputs
+            sealedImageInputs.forEach(input => {
+                input.addEventListener('input', updateSealedImageInputsVisibility);
+            });
+            // Initial call to set correct visibility (e.g., if form is pre-filled or for initial state)
+            updateSealedImageInputsVisibility();
+
+            addSealedItemForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(addSealedItemForm);
+                const newItem = Object.fromEntries(formData.entries());
+                newItem.id = Date.now();
+                newItem.quantity = parseInt(newItem.quantity);
+                newItem.purchasePrice = parseFloat(newItem.purchasePrice) || 0;
+                newItem.notes = newItem.notes || ''; // Ensure notes field is saved
+
+                // Collect all image URLs
+                const images = [];
+                sealedImageInputs.forEach(input => {
+                    if (input.value.trim() !== '') {
+                        images.push(input.value.trim());
+                    }
+                });
+                newItem.images = images;
+                
+                sealedItemsData.push(newItem);
+                saveSealedItemsToStorage(sealedItemsData);
+                addSealedItemForm.reset();
+                // Reset visibility after form submission
+                sealedImageInputs.forEach((input, index) => {
+                    if (index > 0) {
+                        input.classList.add('hidden');
+                        input.value = '';
+                    }
+                });
+                addSealedItemModal.classList.add('hidden');
+                const currentView = localStorage.getItem('sealedItemsView') || 'grid';
+                generateSealedItems(currentView);
+                updateDashboard();
+            });
+        });
+
+        // Update dashboard with dynamic data
+        function updateDashboard() {
+            // New elements for combined stats
+            const totalItemsCountElement = document.getElementById('dashboard-total-items-count');
+            const totalPurchaseValueElement = document.getElementById('dashboard-total-purchase-value');
+
+            // Existing elements
+            const wishlistCountElement = document.getElementById('dashboard-wishlist-count');
+            const recentCardsContainer = document.getElementById('dashboard-recent-cards');
+
+            // 1. Calculate and update Total Items (Collection + Sealed with quantity)
+            const sealedItemsQuantity = sealedItemsData.reduce((sum, item) => sum + (item.quantity || 0), 0);
+            const totalItems = collectionData.length + sealedItemsQuantity;
+            totalItemsCountElement.textContent = totalItems;
+
+            // 2. Calculate and update Total Purchase Value (Collection + Sealed with quantity)
+            const totalCollectionPurchaseValue = collectionData.reduce((sum, card) => sum + (card.purchasePrice || 0), 0);
+            const totalSealedPurchaseValue = sealedItemsData.reduce((sum, item) => sum + ((item.purchasePrice || 0) * (item.quantity || 1)), 0);
+            const overallTotalPurchaseValue = totalCollectionPurchaseValue + totalSealedPurchaseValue;
+            totalPurchaseValueElement.textContent = `€${overallTotalPurchaseValue.toFixed(2)}`;
+
+            // 3. Update wishlist count
+            wishlistCountElement.textContent = wishlistData.length;
+
+            // 4. Update recent cards
+            recentCardsContainer.innerHTML = ''; // Clear static content
+            const recentCards = collectionData.slice(-3).reverse(); // Get last 3, newest first
+
+            if (recentCards.length === 0) {
+                recentCardsContainer.innerHTML = '<p class="p-4 text-gray-500 dark:text-gray-400">Aucune carte ajoutée récemment.</p>';
+            } else {
+                recentCards.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer';
+                    cardElement.innerHTML = `
+                        <div class="flex items-center">
+                            <img src="${card.imageFront || card.image}" alt="${card.name}" class="w-16 h-16 object-contain mr-4">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800 dark:text-white">${card.name}</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">${card.set} #${card.number}</p>
+                            </div>
+                        </div>
+                    `;
+                    cardElement.addEventListener('click', () => showCardModal(card));
+                    recentCardsContainer.appendChild(cardElement);
+                });
+            }
+        }
+
+        // Generate collection items based on view type and filter
+        function generateCollectionItems(viewType, setsFilter) {
+            const container = document.getElementById('collection-container');
+            container.innerHTML = '';
+
+            const emptyMessageElement = document.getElementById('collection-empty-message');
+            if (collectionData.length === 0) {
+                if (emptyMessageElement) emptyMessageElement.classList.remove('hidden');
+                return;
+            } else {
+                if (emptyMessageElement) emptyMessageElement.classList.add('hidden');
+            }
+            
+            // Filter cards by sets if needed
+            const filteredCards = setsFilter === 'all'
+                ? collectionData
+                : collectionData.filter(card => card.sets === setsFilter);
+
+            // Apply grid or list classes to the container
+            container.classList.remove('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'divide-y', 'divide-gray-200', 'dark:divide-gray-700');
+
+
+            if (viewType === 'grid') {
+                container.classList.add('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'gap-4');
+                
+                filteredCards.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-md transition cursor-pointer';
+                    cardElement.innerHTML = `
+                        <div class="p-4">
+                            <img src="${card.imageFront || card.image}" alt="${card.name}" class="w-full h-48 object-contain card-img">
+                        </div>
+                        <div class="p-3 border-t border-gray-200 dark:border-gray-700">
+                            <h4 class="font-medium text-gray-800 dark:text-white truncate">${card.name}</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 truncate">${card.set}</p>
+                        </div>
+                    `;
+                    cardElement.addEventListener('click', () => showCardModal(card));
+                    container.appendChild(cardElement);
+                });
+            } else {
+                container.classList.add('divide-y', 'divide-gray-200', 'dark:divide-gray-700');
+                filteredCards.forEach(card => {
+                    const cardElement = document.createElement('div');
+                    cardElement.className = 'p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer';
+                    cardElement.innerHTML = `
+                        <div class="flex items-center p-4">
+                            <img src="${card.imageFront || card.image}" alt="${card.name}" class="w-16 h-16 object-contain mr-4">
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-medium text-gray-800 dark:text-white truncate">${card.name}</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400 truncate">${card.set} #${card.number}</p>
+                            </div>
+                        </div>
+                    `;
+                    cardElement.addEventListener('click', () => showCardModal(card));
+                    container.appendChild(cardElement);
+                });
+            }
+        }
+
+        // Global variables for zoom functionality
+        const zoomDisplay = document.getElementById('zoom-display');
+        const zoomLevel = 2.5;
+        // Show card modal with details
+        // Function to delete a card from the collection
+        function deleteCard(cardId) {
+            // Filter out the card with the given ID
+            collectionData = collectionData.filter(card => card.id !== cardId);
+            saveCollectionToStorage(collectionData); // Save updated collection to localStorage
+            document.getElementById('card-modal').classList.add('hidden'); // Close the modal
+            
+            // Refresh the collection page to reflect the deletion
+            const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
+            const currentFilter = document.getElementById('sets-filter').value;
+            generateCollectionItems(currentView, currentFilter);
+            updateDashboard();
+        }
+
+        // Helper function to handle zoom logic for any image
+        function setupImageZoom(imgElement, hiResSrc, modalElement) {
+            // Ensure previous listeners are removed if this element was used before
+            imgElement.removeEventListener('mousemove', imgElement._zoomMouseMoveHandler);
+            imgElement.removeEventListener('mouseenter', imgElement._zoomMouseEnterHandler);
+            imgElement.removeEventListener('mouseleave', imgElement._zoomMouseLeaveHandler);
+
+            const handleMouseMove = (e) => {
+                if (modalElement.classList.contains('hidden') || !hiResSrc) {
+                    zoomDisplay.classList.add('hidden');
+                    return;
+                }
+
+                const img = imgElement;
+                const rect = img.getBoundingClientRect();
+
+                // Calculate rendered image size (due to 'object-contain')
+                const imgAspectRatio = img.naturalWidth / img.naturalHeight;
+                const containerAspectRatio = rect.width / rect.height;
+                let renderedWidth, renderedHeight, offsetX, offsetY;
+
+                if (imgAspectRatio > containerAspectRatio) {
+                    renderedWidth = rect.width;
+                    renderedHeight = rect.width / imgAspectRatio;
+                    offsetX = 0;
+                    offsetY = (rect.height - renderedHeight) / 2;
+                } else {
+                    renderedHeight = rect.height;
+                    renderedWidth = rect.height * imgAspectRatio;
+                    offsetY = 0;
+                    offsetX = (rect.width - renderedWidth) / 2;
+                }
+
+                const x = e.clientX - rect.left - offsetX;
+                const y = e.clientY - rect.top - offsetY;
+
+                if (x < 0 || x > renderedWidth || y < 0 || y > renderedHeight) {
+                    zoomDisplay.classList.add('hidden');
+                    return;
+                }
+
+                zoomDisplay.classList.remove('hidden');
+                const bgPosX = - (x / renderedWidth) * (img.naturalWidth * zoomLevel) + (zoomDisplay.offsetWidth / 2);
+                const bgPosY = - (y / renderedHeight) * (img.naturalHeight * zoomLevel) + (zoomDisplay.offsetHeight / 2);
+                zoomDisplay.style.backgroundPosition = `${bgPosX}px ${bgPosY}px`;
+                zoomDisplay.style.top = `${rect.top}px`;
+                zoomDisplay.style.left = `${rect.right + 15}px`;
+                if (rect.right + 15 + zoomDisplay.offsetWidth > window.innerWidth) {
+                    zoomDisplay.style.left = `${rect.left - zoomDisplay.offsetWidth - 15}px`;
+                }
+            };
+
+            const handleMouseEnter = () => {
+                if (modalElement.classList.contains('hidden') || !hiResSrc) return;
+                zoomDisplay.style.backgroundImage = `url('${hiResSrc}')`;
+                if (imgElement.naturalWidth && imgElement.naturalHeight) {
+                    zoomDisplay.style.backgroundSize = `${imgElement.naturalWidth * zoomLevel}px ${imgElement.naturalHeight * zoomLevel}px`;
+                } else {
+                    imgElement.onload = () => {
+                        zoomDisplay.style.backgroundSize = `${imgElement.naturalWidth * zoomLevel}px ${imgElement.naturalHeight * zoomLevel}px`;
+                        imgElement.onload = null;
+                    };
+                }
+                zoomDisplay.classList.remove('hidden');
+            };
+
+            const handleMouseLeave = () => zoomDisplay.classList.add('hidden');
+
+            // Store handlers on the element itself to easily remove them later
+            imgElement._zoomMouseMoveHandler = handleMouseMove;
+            imgElement._zoomMouseEnterHandler = handleMouseEnter;
+            imgElement._zoomMouseLeaveHandler = handleMouseLeave;
+
+            imgElement.addEventListener('mousemove', imgElement._zoomMouseMoveHandler);
+            imgElement.addEventListener('mouseenter', imgElement._zoomMouseEnterHandler);
+            imgElement.addEventListener('mouseleave', imgElement._zoomMouseLeaveHandler);
+        }
+
+        function showCardModal(card) {
+            const modal = document.getElementById('card-modal');
+            const modalImg = document.getElementById('modal-card-img');
+            const closeButton = document.getElementById('close-modal');
+            const imageControls = document.getElementById('modal-image-controls');
+            
+            // Gère l'ancienne structure de données (card.image) et la nouvelle (card.imageFront)
+            const frontImage = card.imageFront || card.image;
+            const backImage = card.imageBack;
+
+            // Met à jour l'image haute résolution pour la loupe
+            // Setup zoom for this image
+            setupImageZoom(modalImg, frontImage, modal);
+            // Hide zoom loupe if it was visible from previous interaction
+            zoomDisplay.classList.add('hidden');
+
+            modalImg.src = frontImage;
+            imageControls.innerHTML = ''; // Vide les anciens boutons
+
+            // Ajoute les boutons Recto/Verso seulement si une image verso existe et n'est pas vide
+            if (backImage && backImage.trim() !== '') {
+                const rectoBtn = document.createElement('button');
+                rectoBtn.className = 'px-4 py-2 rounded-md text-sm transition';
+                rectoBtn.textContent = 'Recto';
+                
+                const versoBtn = document.createElement('button');
+                versoBtn.className = 'px-4 py-2 rounded-md text-sm transition';
+                versoBtn.textContent = 'Verso';
+
+                // Fonction pour gérer le style du bouton actif
+                function setActiveButton(activeBtn) {
+                    [rectoBtn, versoBtn].forEach(btn => {
+                        btn.classList.remove('bg-pokemon-blue', 'text-white');
+                        btn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                    });
+                    activeBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+                    activeBtn.classList.add('bg-pokemon-blue', 'text-white');
+                }
+
+                function switchImage(imageSrc, activeBtn) {
+                    modalImg.src = imageSrc;
+                    // Update zoom source
+                    setupImageZoom(modalImg, imageSrc, modal);
+                    zoomDisplay.classList.add('hidden'); // Hide zoom on image switch
+                    setActiveButton(activeBtn);
+                }
+
+                rectoBtn.onclick = () => switchImage(frontImage, rectoBtn);
+                versoBtn.onclick = () => switchImage(backImage, versoBtn);
+                
+                imageControls.appendChild(rectoBtn);
+                imageControls.appendChild(versoBtn);
+                setActiveButton(rectoBtn); // Le bouton Recto est actif par défaut
+            }
+
+            document.getElementById('modal-card-name').textContent = card.name;
+            document.getElementById('modal-card-set').textContent = `${card.set} #${card.number}`;
+
+            // Populate modal fields with card data for editing (if applicable)
+            const conditionSelect = document.getElementById('modal-condition');
+            if (conditionSelect) {
+                conditionSelect.value = card.condition || 'Mint';
+            }
+
+            const purchasePriceInput = document.getElementById('modal-purchase-price');
+            if (purchasePriceInput) {
+                purchasePriceInput.value = card.purchasePrice ? card.purchasePrice.toFixed(2) : '0.00';
+            }
+            
+            const notesTextarea = document.getElementById('modal-notes');
+            if (notesTextarea) {
+                notesTextarea.value = card.notes || ''; // Assuming a 'notes' property on the card object
+            }
+
+            modal.classList.remove('hidden');
+
+            // Attach event listeners for modal buttons
+            const saveButton = document.getElementById('save-card-btn');
+            const cancelButton = document.getElementById('cancel-card-btn');
+            const deleteButton = document.getElementById('delete-card-btn');
+
+            // Fonction pour fermer la modale et nettoyer les écouteurs de zoom
+            const cleanupAndClose = () => {
+                modal.classList.add('hidden');
+                zoomDisplay.classList.add('hidden');
+                modalImg.removeEventListener('mousemove', modalImg._zoomMouseMoveHandler);
+                modalImg.removeEventListener('mouseenter', modalImg._zoomMouseEnterHandler);
+                modalImg.removeEventListener('mouseleave', modalImg._zoomMouseLeaveHandler);
+            };
+
+            // Clear previous handlers to prevent multiple calls
+            saveButton.onclick = null;
+            cancelButton.onclick = null;
+            deleteButton.onclick = null; 
+
+            // Save button handler
+            closeButton.onclick = cleanupAndClose;
+            cancelButton.onclick = cleanupAndClose;
+
+            // Save button handler
+            saveButton.onclick = () => {
+                const cardIndex = collectionData.findIndex(c => c.id === card.id);
+                if (cardIndex > -1) {
+                    collectionData[cardIndex].condition = conditionSelect.value;
+                    collectionData[cardIndex].purchasePrice = parseFloat(purchasePriceInput.value);
+                    collectionData[cardIndex].notes = notesTextarea.value;
+
+                    saveCollectionToStorage(collectionData);
+                    cleanupAndClose();
+                    const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
+                    const currentFilter = document.getElementById('sets-filter').value;
+                    generateCollectionItems(currentView, currentFilter);
+                    updateDashboard();
+                }
+            };
+
+            // Delete button handler
+            deleteButton.onclick = () => {
+                cleanupAndClose(); // Nettoie et ferme d'abord
+                deleteCard(card.id);
+            };
+        }
+
+        // Générer les items de la wishlist (avec gestion des vues grille/liste)
+        function generateWishlistItems(viewType = 'grid') {
+            const container = document.getElementById('wishlist-container');
+            container.innerHTML = '';
+            
+            const emptyMessageElement = document.getElementById('wishlist-empty-message');
+            if (wishlistData.length === 0) {
+                if (emptyMessageElement) emptyMessageElement.classList.remove('hidden');
+                return;
+            } else {
+                if (emptyMessageElement) emptyMessageElement.classList.add('hidden');
+            }
+
+            // Apply grid or list classes to the container
+            if (viewType === 'grid') {
+                container.classList.remove('divide-y', 'divide-gray-200', 'dark:divide-gray-700');
+                container.classList.add('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'gap-4');
+            } else { // list view
+                container.classList.add('divide-y', 'divide-gray-200', 'dark:divide-gray-700');
+                container.classList.remove('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'gap-4');
+            }
+
+            wishlistData.forEach(item => {
+                const itemElement = document.createElement('div');
+                
+                if (viewType === 'grid') {
+                    itemElement.className = 'bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-md transition cursor-pointer relative p-4'; // Added p-4 for padding
+                    itemElement.innerHTML = `
+                        <div class="p-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-48 object-contain card-img">
+                        </div>
+                        <div class="p-3 border-t border-gray-200 dark:border-gray-700">
+                            <h4 class="font-medium text-gray-800 dark:text-white truncate">${item.name}</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description}</p>
+                            ${item.targetPrice > 0 ? `<p class="text-sm text-gray-500 dark:text-gray-400">Prix cible: <span class="font-medium text-gray-800 dark:text-white">€${item.targetPrice.toFixed(2)}</span></p>` : ''}
+                        </div>
+                    `;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'absolute top-2 right-2 p-1 rounded-full bg-pokemon-red bg-opacity-70 text-white hover:bg-opacity-100 transition z-10';
+                    deleteButton.innerHTML = '<i class="fas fa-times text-xs"></i>';
+                    deleteButton.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Empêche le clic de se propager à l'élément parent
+                        deleteWishlistItem(item.id);
+                    });
+                    itemElement.appendChild(deleteButton);
+                } else { // list view
+                    itemElement.className = 'p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition';
+                    itemElement.innerHTML = `
+                        <div class="flex items-center">
+                            <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-contain mr-4">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800 dark:text-white">${item.name}</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">${item.description}</p>
+                                ${item.targetPrice > 0 ? `<div class="mt-1 flex items-center text-sm text-gray-500 dark:text-gray-400">
+                                    <span class="mr-2">Prix cible: <span class="font-medium text-gray-800 dark:text-white">€${item.targetPrice.toFixed(2)}</span></span>
+                                </div>` : ''}
+                            </div>
+                        </div>
+                    `;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.className = 'p-2 rounded-full bg-pokemon-red bg-opacity-10 text-pokemon-red hover:bg-opacity-20 transition';
+                    deleteButton.innerHTML = '<i class="fas fa-times"></i>';
+                    deleteButton.addEventListener('click', (event) => {
+                        event.stopPropagation(); // Empêche le clic de se propager à l'élément parent
+                        deleteWishlistItem(item.id);
+                    });
+                    itemElement.querySelector('.flex.items-center').appendChild(deleteButton);
+                }
+                container.appendChild(itemElement);
+            });
+        }
+
+        function deleteWishlistItem(itemId) {
+            wishlistData = wishlistData.filter(item => item.id !== itemId);
+            saveWishlistToStorage(wishlistData);
+            const currentView = localStorage.getItem('wishlistView') || 'grid';
+            generateWishlistItems(currentView);
+            updateDashboard();
+        }
+
+        // Générer les items scellés de l'inventaire (avec gestion des vues grille/liste)
+        function generateSealedItems(viewType = 'grid') {
+            const container = document.getElementById('sealed-items-container');
+            container.innerHTML = '';
+
+            //if (sealedItemsData.length === 0) {
+            //    container.innerHTML = '<p class="p-4 text-gray-500 dark:text-gray-400">Votre inventaire d\'items scellés est vide.</p>';
+            //    return;
+            //}
+            const emptyMessageElement = document.getElementById('sealed-items-empty-message');
+            if (sealedItemsData.length === 0) {
+                if (emptyMessageElement) emptyMessageElement.classList.remove('hidden');
+                return;
+            } else {
+                if (emptyMessageElement) emptyMessageElement.classList.add('hidden');
+            }
+
+            // Apply grid or list classes to the container
+            if (viewType === 'grid') {
+                container.classList.remove('divide-y', 'divide-gray-200', 'dark:divide-gray-700');
+                container.classList.add('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'gap-4');
+            } else { // list view
+                container.classList.add('divide-y', 'divide-gray-200', 'dark:divide-gray-700');
+                container.classList.remove('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'gap-4');
+            }
+
+            sealedItemsData.forEach(item => {
+                const itemElement = document.createElement('div');
+                
+                if (viewType === 'grid') {
+                    itemElement.className = 'bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-md transition cursor-pointer p-4'; // Added p-4 for padding
+                    itemElement.setAttribute('onclick', `showSealedItemModal(${item.id})`);
+                    itemElement.innerHTML = `
+                        <div class="p-4">
+                            <img src="${(item.images && item.images[0]) || item.image || ''}" alt="${item.name}" class="w-full h-48 object-contain card-img">
+                        </div>
+                        <div class="p-3 border-t border-gray-200 dark:border-gray-700">
+                            <h4 class="font-medium text-gray-800 dark:text-white truncate">${item.name}</h4>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 truncate">${item.description || 'Aucune description'}</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Quantité: <span class="font-medium text-gray-800 dark:text-white">${item.quantity}</span></p> 
+                            ${item.purchasePrice > 0 ? `<p class="text-sm text-gray-500 dark:text-gray-400">Prix d'achat: <span class="font-medium text-gray-800 dark:text-white">€${item.purchasePrice.toFixed(2)}</span></p>` : ''}
+                        </div>
+                    `;
+                } else { // list view
+                    itemElement.className = 'p-4 hover:bg-gray-50 dark:hover:bg-gray-700 transition cursor-pointer';
+                    itemElement.setAttribute('onclick', `showSealedItemModal(${item.id})`);
+                    itemElement.innerHTML = `
+                        <div class="flex items-center">
+                            <img src="${(item.images && item.images[0]) || item.image || ''}" alt="${item.name}" class="w-16 h-16 object-contain mr-4">
+                            <div class="flex-1">
+                                <h4 class="font-medium text-gray-800 dark:text-white">${item.name}</h4>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">${item.description || 'Aucune description'}</p> 
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Quantité: <span class="font-medium text-gray-800 dark:text-white">${item.quantity}</span></p>
+                                ${item.purchasePrice > 0 ? `<p class="text-sm text-gray-500 dark:text-gray-400">Prix d'achat: <span class="font-medium text-gray-800 dark:text-white">€${item.purchasePrice.toFixed(2)}</span></p>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+                container.appendChild(itemElement);
+            });
+        }
+
+        function deleteSealedItem(itemId) {
+            sealedItemsData = sealedItemsData.filter(item => item.id !== itemId);
+            saveSealedItemsToStorage(sealedItemsData);
+            const currentView = localStorage.getItem('sealedItemsView') || 'grid';
+            generateSealedItems(currentView);
+            updateDashboard();
+        }
+
+        function showSealedItemModal(itemId) {
+            const item = sealedItemsData.find(i => i.id === itemId);
+            if (!item) return;
+
+            // Get modal elements
+            const modal = document.getElementById('sealed-item-modal');
+            const closeButton = document.getElementById('close-sealed-item-modal');
+            const nameElement = document.getElementById('modal-sealed-name');
+            const descriptionElement = document.getElementById('modal-sealed-description');
+            const imgElement = document.getElementById('modal-sealed-img');
+            const quantityInput = document.getElementById('modal-sealed-quantity');
+            const priceInput = document.getElementById('modal-sealed-purchase-price');
+            const notesTextarea = document.getElementById('modal-sealed-notes');
+            const saveButton = document.getElementById('save-sealed-item-btn');
+            const cancelButton = document.getElementById('cancel-sealed-item-btn');
+            const deleteButton = document.getElementById('delete-sealed-item-btn');
+            const prevImgBtn = document.getElementById('sealed-prev-img-btn');
+            const nextImgBtn = document.getElementById('sealed-next-img-btn');
+            const imgCounter = document.getElementById('sealed-img-counter');
+            // Clear previous handlers to prevent multiple calls if modal is opened multiple times
+            // This is crucial for ensuring event listeners are not duplicated.
+            saveButton.onclick = null; cancelButton.onclick = null; deleteButton.onclick = null; closeButton.onclick = null;
+
+            // Fonction pour fermer la modale et nettoyer les écouteurs de zoom
+            const cleanupAndClose = (closeModal = true) => { // Added closeModal parameter
+                if (closeModal) modal.classList.add('hidden');
+                zoomDisplay.classList.add('hidden');
+                imgElement.removeEventListener('mousemove', imgElement._zoomMouseMoveHandler);
+                imgElement.removeEventListener('mouseenter', imgElement._zoomMouseEnterHandler);
+                imgElement.removeEventListener('mouseleave', imgElement._zoomMouseLeaveHandler);
+                // Clear image navigation listeners
+                prevImgBtn.onclick = null;
+                nextImgBtn.onclick = null;
+            };
+
+            let currentImageIndex = 0; // Start with the first image
+
+            // Helper function to display the current image and update UI
+            const displayImage = (index) => {
+                const imageUrl = (item.images && item.images[index]) || item.image || '';
+                imgElement.src = imageUrl;
+                imgElement.alt = item.name;
+                setupImageZoom(imgElement, imageUrl, modal); // Update zoom with new image
+                imgCounter.textContent = `${index + 1} / ${item.images.length}`;
+                
+                // Hide/show navigation buttons based on index
+                prevImgBtn.classList.toggle('hidden', index === 0);
+                nextImgBtn.classList.toggle('hidden', index === item.images.length - 1);
+            };
+
+            // Populate modal with item data
+            nameElement.textContent = item.name;
+            descriptionElement.textContent = item.description || 'Aucune description';
+            
+            // Initial display of the first image and setup navigation
+            if (item.images && item.images.length > 0) {
+                displayImage(currentImageIndex);
+                const hasMultipleImages = item.images.length > 1;
+                prevImgBtn.classList.toggle('hidden', !hasMultipleImages || currentImageIndex === 0);
+                nextImgBtn.classList.toggle('hidden', !hasMultipleImages || currentImageIndex === item.images.length - 1);
+                imgCounter.classList.toggle('hidden', !hasMultipleImages);
+            } else {
+                // Fallback for items without images array or empty array
+                imgElement.src = item.image || ''; // Use old 'image' property if 'images' is not present
+                imgElement.alt = item.name;
+                setupImageZoom(imgElement, item.image || '', modal);
+                prevImgBtn.classList.add('hidden');
+                nextImgBtn.classList.add('hidden');
+                imgCounter.classList.add('hidden');
+            }
+            quantityInput.value = item.quantity;
+            priceInput.value = item.purchasePrice ? item.purchasePrice.toFixed(2) : '0.00';
+            notesTextarea.value = item.notes || '';
+
+            // Show the modal
+            modal.classList.remove('hidden');
+
+            // Event listeners for modal buttons
+            closeButton.onclick = cleanupAndClose; // Use the cleanup function
+            cancelButton.onclick = cleanupAndClose; // Use the cleanup function
+
+            // Event listeners for image navigation
+            prevImgBtn.onclick = () => {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    displayImage(currentImageIndex);
+                }
+            };
+            nextImgBtn.onclick = () => {
+                if (currentImageIndex < item.images.length - 1) {
+                    currentImageIndex++;
+                    displayImage(currentImageIndex);
+                }
+            };
+
+            // Save button handler
+            saveButton.onclick = () => {
+                const itemIndex = sealedItemsData.findIndex(i => i.id === itemId);
+                if (itemIndex > -1) {
+                    sealedItemsData[itemIndex].quantity = parseInt(quantityInput.value);
+                    sealedItemsData[itemIndex].purchasePrice = parseFloat(priceInput.value);
+                    sealedItemsData[itemIndex].notes = notesTextarea.value;
+                    saveSealedItemsToStorage(sealedItemsData); 
+                    cleanupAndClose(); 
+                    const currentView = localStorage.getItem('sealedItemsView') || 'grid';
+                    generateSealedItems(currentView);
+                    updateDashboard();
+                }
+            };
+
+            deleteButton.onclick = () => {
+                cleanupAndClose(); 
+                deleteSealedItem(itemId);
+            };
+        }
+
+        // Prevent default behavior for all anchor tags
+        document.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                e.preventDefault();
+            }
+        });
+
+        // --- Logique de la loupe de zoom (définie une seule fois) ---
+        // Removed global currentZoomTargetImage and global event listeners.
+        // Zoom logic is now handled by setupImageZoom function.
+
+        // Event listeners and initial call for Wishlist
+        const wishlistViewGridBtn = document.getElementById('wishlist-view-grid'); // Moved declaration outside for global access
+        const wishlistViewListBtn = document.getElementById('wishlist-view-list');
+
+        wishlistViewGridBtn.addEventListener('click', () => {
+            wishlistViewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+            wishlistViewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewListBtn.classList.remove('bg-pokemon-blue', 'text-white');
+            generateWishlistItems('grid');
+            localStorage.setItem('wishlistView', 'grid'); // Save preference
+        });
+        
+        wishlistViewListBtn.addEventListener('click', () => {
+            wishlistViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+            wishlistViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewGridBtn.classList.remove('bg-pokemon-blue', 'text-white');
+            generateWishlistItems('list');
+            localStorage.setItem('wishlistView', 'list'); // Save preference
+        });
+
+        // Initial load of wishlist items based on saved preference and set active button
+        const initialWishlistView = localStorage.getItem('wishlistView') || 'grid';
+        if (initialWishlistView === 'list') {
+            wishlistViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+            wishlistViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewGridBtn.classList.remove('bg-pokemon-blue', 'text-white');
+        } else {
+            wishlistViewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+            wishlistViewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            wishlistViewListBtn.classList.remove('bg-pokemon-blue', 'text-white');
+        }
+        // Call generateWishlistItems initially with the determined viewType
+        generateWishlistItems(initialWishlistView);
+
+        // Event listeners and initial call for Sealed Items
+        const sealedItemsViewGridBtn = document.getElementById('sealed-items-view-grid'); // Moved declaration outside for global access
+        const sealedItemsViewListBtn = document.getElementById('sealed-items-view-list');
+
+        sealedItemsViewGridBtn.addEventListener('click', () => {
+            sealedItemsViewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+            sealedItemsViewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewListBtn.classList.remove('bg-pokemon-blue', 'text-white');
+            generateSealedItems('grid');
+            localStorage.setItem('sealedItemsView', 'grid'); // Save preference
+        });
+
+        sealedItemsViewListBtn.addEventListener('click', () => {
+            sealedItemsViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+            sealedItemsViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewGridBtn.classList.remove('bg-pokemon-blue', 'text-white');
+            generateSealedItems('list');
+            localStorage.setItem('sealedItemsView', 'list'); // Save preference
+        });
+
+        // Initial load of sealed items based on saved preference and set active button
+        const initialSealedItemsView = localStorage.getItem('sealedItemsView') || 'grid';
+        if (initialSealedItemsView === 'list') {
+            sealedItemsViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
+            sealedItemsViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewGridBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewGridBtn.classList.remove('bg-pokemon-blue', 'text-white');
+        } else {
+            sealedItemsViewGridBtn.classList.add('bg-pokemon-blue', 'text-white');
+            sealedItemsViewGridBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewListBtn.classList.add('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
+            sealedItemsViewListBtn.classList.remove('bg-pokemon-blue', 'text-white');
+        }
+        // Call generateSealedItems initially with the determined viewType
+        generateSealedItems(initialSealedItemsView);
+    </script>
+</body>
+</html>
