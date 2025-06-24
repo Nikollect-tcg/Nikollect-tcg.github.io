@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr" class="h-full">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,20 +26,34 @@
         }
     </script>
     <style>
-        .page-content { display: none; }
-        .page-content.active-page { display: block; }
-        .card-img { transition: transform 0.3s; }
-        .card-img:hover { transform: scale(1.05); }
-        .nav-btn.active { 
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active-page {
+            display: block;
+        }
+
+        .card-img {
+            transition: transform 0.3s;
+        }
+
+        .card-img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-btn.active {
             border-bottom: 3px solid #2A75BB;
             color: #2A75BB;
         }
+
         .dark .nav-btn.active {
             border-bottom-color: #FFCB05;
             color: #FFCB05;
         }
     </style>
 </head>
+
 <body class="bg-gray-100 dark:bg-gray-900 min-h-full">
     <!-- Header -->
     <header class="bg-white dark:bg-gray-800 shadow-sm">
@@ -55,12 +70,18 @@
                 <div class="relative">
                     <button id="user-menu-button" class="flex items-center space-x-2">
                         <span class="font-medium text-gray-700 dark:text-gray-300">Utilisateur</span>
-                        <img class="w-8 h-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Profil">
+                        <img class="w-8 h-8 rounded-full"
+                            src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                            alt="Profil">
                     </button>
-                    <div id="user-menu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-10">
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Profil</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Paramètres</a>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Déconnexion</a>
+                    <div id="user-menu"
+                        class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-10">
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Profil</a>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Paramètres</a>
+                        <a href="#"
+                            class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700">Déconnexion</a>
                     </div>
                 </div>
             </div>
@@ -71,16 +92,24 @@
     <nav class="bg-white dark:bg-gray-800 shadow-sm">
         <div class="container mx-auto px-4">
             <div class="flex space-x-1 overflow-x-auto">
-                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition active" data-page="dashboard">
+                <button
+                    class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition active"
+                    data-page="dashboard">
                     <i class="fas fa-home mr-2"></i> Tableau de bord
                 </button>
-                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition" data-page="collection">
+                <button
+                    class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition"
+                    data-page="collection">
                     <i class="fas fa-folder-open mr-2"></i> Collection
                 </button>
-                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition" data-page="wishlist">
+                <button
+                    class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition"
+                    data-page="wishlist">
                     <i class="fas fa-star mr-2"></i> Wishlist
                 </button>
-                <button class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition" data-page="inventory">
+                <button
+                    class="nav-btn px-4 py-3 font-medium text-gray-600 dark:text-gray-400 hover:text-pokemon-blue dark:hover:text-pokemon-yellow transition"
+                    data-page="inventory">
                     <i class="fas fa-box-open mr-2"></i> Items scellés
                 </button>
             </div>
@@ -98,7 +127,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400">Total Items (Cartes & Scellés)</p>
-                            <h3 id="dashboard-total-items-count" class="text-3xl font-bold text-gray-800 dark:text-white">0</h3>
+                            <h3 id="dashboard-total-items-count"
+                                class="text-3xl font-bold text-gray-800 dark:text-white">0</h3>
                         </div>
                         <div class="p-3 rounded-full bg-pokemon-blue bg-opacity-10 text-pokemon-blue">
                             <i class="fas fa-boxes text-xl"></i> <!-- Icon for combined items -->
@@ -110,7 +140,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400">Valeur d'achat totale</p>
-                            <h3 id="dashboard-total-purchase-value" class="text-3xl font-bold text-gray-800 dark:text-white">€0.00</h3>
+                            <h3 id="dashboard-total-purchase-value"
+                                class="text-3xl font-bold text-gray-800 dark:text-white">€0.00</h3>
                         </div>
                         <div class="p-3 rounded-full bg-green-500 bg-opacity-10 text-green-500">
                             <i class="fas fa-euro-sign text-xl"></i>
@@ -122,7 +153,8 @@
                     <div class="flex items-center justify-between">
                         <div>
                             <p class="text-gray-500 dark:text-gray-400">Items dans wishlist</p>
-                            <h3 id="dashboard-wishlist-count" class="text-3xl font-bold text-gray-800 dark:text-white">0</h3>
+                            <h3 id="dashboard-wishlist-count" class="text-3xl font-bold text-gray-800 dark:text-white">0
+                            </h3>
                         </div>
                         <div class="p-3 rounded-full bg-pokemon-red bg-opacity-10 text-pokemon-red">
                             <i class="fas fa-star text-xl"></i>
@@ -148,13 +180,20 @@
                     <div class="flex justify-between items-center">
                         <h3 class="text-lg font-medium text-gray-800 dark:text-white">Mes cartes</h3>
                         <div class="flex space-x-2">
+                            <button id="update-prices-btn"
+                                class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition"
+                                title="Valoriser depuis Cardmarket (GitHub)">
+                                <i class="fas fa-sync-alt"></i> Valoriser
+                            </button>
                             <button id="view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md">
                                 <i class="fas fa-th-large"></i>
                             </button>
-                            <button id="view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
+                            <button id="view-list"
+                                class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
                                 <i class="fas fa-list"></i>
                             </button>
-                            <select id="sets-filter" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
+                            <select id="sets-filter"
+                                class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
                                 <option value="all">Tous les sets</option>
                                 <option value="ev">Écarlate et Violet</option>
                                 <option value="eb">Épée et Bouclier</option>
@@ -183,49 +222,61 @@
                     </div>
                 </div>
                 <div id="collection-container">
-                <!-- Collection items will be generated here -->
+                    <!-- Collection items will be generated here -->
                 </div>
             </div>
             <!-- Ajout du bouton flottant d'ajout de carte -->
-                <button id="add-card-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
-                    <i class="fas fa-plus"></i>
-                </button>
-                <!-- Modale d'ajout de carte -->
-                <div id="add-card-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-                  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+            <button id="add-card-btn"
+                class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+                <i class="fas fa-plus"></i>
+            </button>
+            <!-- Modale d'ajout de carte -->
+            <div id="add-card-modal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
                     <div class="p-6">
-                      <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter une carte</h3>
-                        <button id="close-add-card-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-                          <i class="fas fa-times"></i>
-                        </button>
-                      </div>
-                      <form id="add-card-form" class="space-y-4">
-                        <input type="text" name="name" placeholder="Nom de la carte" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                        <input type="text" name="number" placeholder="Numéro" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                        <select name="sets" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                            <option value="">Choisir un set</option>
-                            <!-- Les options de set seront générées par JavaScript -->
-                        </select>
-                        <select name="set" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" disabled>
-                            <option value="">Choisir une série</option>
-                            <!-- Options de séries seront ajoutées dynamiquement ici -->
-                        </select>
-                        <input type="url" name="imageFront" placeholder="URL de l'image (Recto)" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                        <input type="url" name="imageBack" placeholder="URL de l'image (Verso)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                        <input type="number" name="purchasePrice" placeholder="Prix d'achat (€)" required step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                        <select name="condition" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                            <option value="Mint">Mint</option>
-                            <option value="Near Mint">Near Mint</option>
-                            <option value="Légerement Joué">Légerement Joué</option>
-                            <option value="Modérément Joué">Modérément Joué</option>
-                            <option value="Très Joué">Très Joué</option>
-                        </select>
-                        <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter</button>
-                      </form>
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter une carte</h3>
+                            <button id="close-add-card-modal"
+                                class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="add-card-form" class="space-y-4">
+                            <input type="text" name="name" placeholder="Nom de la carte" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="text" name="number" placeholder="Numéro" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <select name="sets" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                                <option value="">Choisir un set</option>
+                                <!-- Les options de set seront générées par JavaScript -->
+                            </select>
+                            <select name="set" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" disabled>
+                                <option value="">Choisir une série</option>
+                                <!-- Options de séries seront ajoutées dynamiquement ici -->
+                            </select>
+                            <input type="url" name="imageFront" placeholder="URL de l'image (Recto)" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="url" name="imageBack" placeholder="URL de l'image (Verso)"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="number" name="purchasePrice" placeholder="Prix d'achat (€)" required
+                                step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <select name="condition" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                                <option value="Mint">Mint</option>
+                                <option value="Near Mint">Near Mint</option>
+                                <option value="Légerement Joué">Légerement Joué</option>
+                                <option value="Modérément Joué">Modérément Joué</option>
+                                <option value="Très Joué">Très Joué</option>
+                            </select>
+                            <button type="submit"
+                                class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter</button>
+                        </form>
                     </div>
-                  </div>
                 </div>
+            </div>
         </div>
 
         <!-- Wishlist Page -->
@@ -239,7 +290,8 @@
                             <button id="wishlist-view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md">
                                 <i class="fas fa-th-large"></i>
                             </button>
-                            <button id="wishlist-view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
+                            <button id="wishlist-view-list"
+                                class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
                                 <i class="fas fa-list"></i>
                             </button>
                         </div>
@@ -255,29 +307,38 @@
             </div>
 
             <!-- Bouton flottant d'ajout à la wishlist -->
-            <button id="add-wishlist-item-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+            <button id="add-wishlist-item-btn"
+                class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
                 <i class="fas fa-plus"></i>
             </button>
 
             <!-- Modale d'ajout à la wishlist -->
-            <div id="add-wishlist-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-              <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
-                <div class="p-6">
-                  <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter à la Wishlist</h3>
-                    <button id="close-add-wishlist-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                  <form id="add-wishlist-item-form" class="space-y-4">
-                    <input type="text" name="name" placeholder="Nom de la carte ou de l'item" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <input type="text" name="description" placeholder="Sets /Série / Numéro / Description" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <input type="url" name="image" placeholder="URL de l'image" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <input type="number" name="targetPrice" placeholder="Prix cible (€)" step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à la Wishlist</button>
-                  </form>
+            <div id="add-wishlist-item-modal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter à la Wishlist</h3>
+                            <button id="close-add-wishlist-modal"
+                                class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="add-wishlist-item-form" class="space-y-4">
+                            <input type="text" name="name" placeholder="Nom de la carte ou de l'item" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="text" name="description" placeholder="Sets /Série / Numéro / Description"
+                                required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="url" name="image" placeholder="URL de l'image" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="number" name="targetPrice" placeholder="Prix cible (€)" step="0.01"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <button type="submit"
+                                class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à
+                                la Wishlist</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
 
@@ -292,7 +353,8 @@
                             <button id="sealed-items-view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md">
                                 <i class="fas fa-th-large"></i>
                             </button>
-                            <button id="sealed-items-view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
+                            <button id="sealed-items-view-list"
+                                class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md">
                                 <i class="fas fa-list"></i>
                             </button>
                         </div>
@@ -308,39 +370,62 @@
             </div>
 
             <!-- Bouton flottant d'ajout à l'inventaire -->
-            <button id="add-sealed-item-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+            <button id="add-sealed-item-btn"
+                class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
                 <i class="fas fa-plus"></i>
             </button>
 
             <!-- Modale d'ajout à l'inventaire -->
-            <div id="add-sealed-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-              <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
-                <div class="p-6">
-                  <div class="flex justify-between items-start mb-4">
-                    <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter un item scellé</h3>
-                    <button id="close-add-sealed-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
-                      <i class="fas fa-times"></i>
-                    </button>
-                  </div>
-                  <form id="add-sealed-item-form" class="space-y-4">
-                    <input type="text" name="name" placeholder="Nom de l'item (ex: ETB Écarlate et Violet)" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <input type="text" name="description" placeholder="Description (ex: Boîte de 36 boosters)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <input type="url" name="image1" id="sealed-image1" placeholder="URL de l'image 1" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" data-image-index="1">
-                    <input type="url" name="image2" id="sealed-image2" placeholder="URL de l'image 2 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="2">
-                    <input type="url" name="image3" id="sealed-image3" placeholder="URL de l'image 3 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="3">
-                    <input type="url" name="image4" id="sealed-image4" placeholder="URL de l'image 4 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="4">
-                    <input type="number" name="quantity" placeholder="Quantité" required min="1" value="1" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <input type="number" name="purchasePrice" placeholder="Prix d'achat total (€)" step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
-                    <textarea name="notes" placeholder="Notes (état, provenance, etc.)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" rows="3"></textarea>
-                    <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à l'inventaire</button>
-                  </form>
+            <div id="add-sealed-item-modal"
+                class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter un item scellé</h3>
+                            <button id="close-add-sealed-modal"
+                                class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        <form id="add-sealed-item-form" class="space-y-4">
+                            <input type="text" name="name" placeholder="Nom de l'item (ex: ETB Écarlate et Violet)"
+                                required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="text" name="description" placeholder="Description (ex: Boîte de 36 boosters)"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="url" name="image1" id="sealed-image1" placeholder="URL de l'image 1" required
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white"
+                                data-image-index="1">
+                            <input type="url" name="image2" id="sealed-image2"
+                                placeholder="URL de l'image 2 (optionnel)"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden"
+                                data-image-index="2">
+                            <input type="url" name="image3" id="sealed-image3"
+                                placeholder="URL de l'image 3 (optionnel)"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden"
+                                data-image-index="3">
+                            <input type="url" name="image4" id="sealed-image4"
+                                placeholder="URL de l'image 4 (optionnel)"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden"
+                                data-image-index="4">
+                            <input type="number" name="quantity" placeholder="Quantité" required min="1" value="1"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <input type="number" name="purchasePrice" placeholder="Prix d'achat total (€)" step="0.01"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+                            <textarea name="notes" placeholder="Notes (état, provenance, etc.)"
+                                class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white"
+                                rows="3"></textarea>
+                            <button type="submit"
+                                class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à
+                                l'inventaire</button>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
         </div>
 
         <!-- Card Detail Modal -->
-        <div id="card-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div id="card-modal"
+            class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <div class="p-6">
                     <div class="flex justify-between items-start mb-4">
@@ -349,25 +434,30 @@
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
-                    
+
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div class="space-y-4">
                             <div class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 flex justify-center">
-                                <img id="modal-card-img" src="https://images.pokemontcg.io/sv3pt5/177.png" alt="Card" class="h-64 object-contain">
+                                <img id="modal-card-img" src="https://images.pokemontcg.io/sv3pt5/177.png" alt="Card"
+                                    class="h-64 object-contain">
                             </div>
                             <div id="modal-image-controls" class="flex justify-center space-x-4">
                                 <!-- Les boutons Recto/Verso seront générés ici -->
                             </div>
                         </div>
-                        
+
                         <div>
-                            <h4 id="modal-card-name" class="text-lg font-bold text-gray-800 dark:text-white mb-2">Pikachu ex</h4>
-                            <p id="modal-card-set" class="text-sm text-gray-500 dark:text-gray-400 mb-4">Scarlet & Violet - Paldean Fates #177</p>
-                            
+                            <h4 id="modal-card-name" class="text-lg font-bold text-gray-800 dark:text-white mb-2">
+                                Pikachu ex</h4>
+                            <p id="modal-card-set" class="text-sm text-gray-500 dark:text-gray-400 mb-4">Scarlet &
+                                Violet - Paldean Fates #177</p>
+
                             <div class="space-y-4">
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">État</label>
-                                    <select id="modal-condition" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">État</label>
+                                    <select id="modal-condition"
+                                        class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
                                         <option value="Mint">Mint</option>
                                         <option value="Near Mint">Near Mint</option>
                                         <option value="Légerement Joué">Légerement Joué</option>
@@ -375,30 +465,54 @@
                                         <option value="Très Joué">Très Joué</option>
                                     </select>
                                 </div>
-                                
+
                                 <div>
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix d'achat</label>
-                                    <div class="relative"> 
-                                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix
+                                        d'achat</label>
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                             <span class="text-gray-500">€</span>
                                         </div>
-                                        <input type="number" id="modal-purchase-price" class="pl-8 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" value="10.00">
+                                        <input type="number" id="modal-purchase-price"
+                                            class="pl-8 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm"
+                                            value="10.00">
                                     </div>
                                 </div>
-                                
-                                <div>
-                                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
-                                    <textarea id="modal-notes" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" rows="3"></textarea>
+
+                                <div class="pt-4 mt-4 border-t border-gray-200 dark:border-gray-600">
+                                    <h4 class="text-md font-semibold text-gray-800 dark:text-white mb-2">Valeurs de
+                                        Marché</h4>
+                                    <div class="space-y-2">
+                                        <div>
+                                            <label
+                                                class="block text-sm font-medium text-gray-500 dark:text-gray-400">Prix
+                                                moyen Cardmarket</p>
+                                                <p id="modal-cardmarket-price"
+                                                    class="font-medium text-gray-800 dark:text-white">N/A</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                
+
+                                <div>
+                                    <label
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
+                                    <textarea id="modal-notes"
+                                        class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm"
+                                        rows="3"></textarea>
+                                </div>
+
                                 <div class="flex space-x-3 pt-2">
-                                    <button id="save-card-btn" class="px-4 py-2 bg-pokemon-blue text-white rounded-md hover:bg-blue-700 transition">
+                                    <button id="save-card-btn"
+                                        class="px-4 py-2 bg-pokemon-blue text-white rounded-md hover:bg-blue-700 transition">
                                         Enregistrer
                                     </button>
-                                    <button id="cancel-card-btn" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">
+                                    <button id="cancel-card-btn"
+                                        class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">
                                         Annuler
                                     </button>
-                                    <button id="delete-card-btn" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition">
+                                    <button id="delete-card-btn"
+                                        class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition">
                                         Supprimer
                                     </button>
                                 </div>
@@ -411,70 +525,90 @@
     </main>
     <style>
         #zoom-display {
-            width: 300px; /* Largeur de la loupe */
-            height: 420px; /* Hauteur de la loupe (ratio carte) */
+            width: 300px;
+            /* Largeur de la loupe */
+            height: 420px;
+            /* Hauteur de la loupe (ratio carte) */
             background-repeat: no-repeat;
-            pointer-events: none; /* Pour que la loupe n'interfère pas avec la souris */
+            pointer-events: none;
+            /* Pour que la loupe n'interfère pas avec la souris */
         }
     </style>
     <!-- Sealed Item Detail Modal -->
-    <div id="sealed-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div id="sealed-item-modal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div class="p-6">
                 <div class="flex justify-between items-start mb-4">
                     <h3 class="text-xl font-bold text-gray-800 dark:text-white">Détails de l'item scellé</h3>
-                    <button id="close-sealed-item-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                    <button id="close-sealed-item-modal"
+                        class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
                         <i class="fas fa-times"></i>
                     </button>
                 </div>
-                
+
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div class="space-y-4">
                         <div class="relative bg-gray-100 dark:bg-gray-700 rounded-lg p-4 flex justify-center">
                             <img id="modal-sealed-img" src="" alt="Sealed Item" class="h-64 object-contain">
                             <!-- Navigation buttons -->
-                            <button id="sealed-prev-img-btn" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hidden">
+                            <button id="sealed-prev-img-btn"
+                                class="absolute left-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hidden">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <button id="sealed-next-img-btn" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hidden">
+                            <button id="sealed-next-img-btn"
+                                class="absolute right-2 top-1/2 -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full hidden">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
                             <!-- Image counter -->
-                            <div id="sealed-img-counter" class="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded hidden">
+                            <div id="sealed-img-counter"
+                                class="absolute bottom-2 right-2 bg-black bg-opacity-50 text-white text-xs px-2 py-1 rounded hidden">
                                 1 / 1
                             </div>
                         </div>
                     </div>
-                    
+
                     <div>
                         <h4 id="modal-sealed-name" class="text-lg font-bold text-gray-800 dark:text-white mb-2"></h4>
                         <p id="modal-sealed-description" class="text-sm text-gray-500 dark:text-gray-400 mb-4"></p>
-                        
+
                         <div class="space-y-4">
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Quantité</label>
-                                <input type="number" id="modal-sealed-quantity" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" value="1" min="1">
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Quantité</label>
+                                <input type="number" id="modal-sealed-quantity"
+                                    class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm"
+                                    value="1" min="1">
                             </div>
-                            
+
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix d'achat total</label>
-                                <div class="relative"> 
+                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Prix
+                                    d'achat total</label>
+                                <div class="relative">
                                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                                         <span class="text-gray-500">€</span>
                                     </div>
-                                    <input type="number" id="modal-sealed-purchase-price" class="pl-8 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" value="0.00">
+                                    <input type="number" id="modal-sealed-purchase-price"
+                                        class="pl-8 w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm"
+                                        value="0.00">
                                 </div>
                             </div>
-                            
+
                             <div>
-                                <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
-                                <textarea id="modal-sealed-notes" class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm" rows="3"></textarea>
+                                <label
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Notes</label>
+                                <textarea id="modal-sealed-notes"
+                                    class="w-full bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm"
+                                    rows="3"></textarea>
                             </div>
-                            
+
                             <div class="flex space-x-3 pt-2">
-                                <button id="save-sealed-item-btn" class="px-4 py-2 bg-pokemon-blue text-white rounded-md hover:bg-blue-700 transition">Enregistrer</button>
-                                <button id="cancel-sealed-item-btn" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">Annuler</button>
-                                <button id="delete-sealed-item-btn" class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition">Supprimer</button>
+                                <button id="save-sealed-item-btn"
+                                    class="px-4 py-2 bg-pokemon-blue text-white rounded-md hover:bg-blue-700 transition">Enregistrer</button>
+                                <button id="cancel-sealed-item-btn"
+                                    class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition">Annuler</button>
+                                <button id="delete-sealed-item-btn"
+                                    class="px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700 transition">Supprimer</button>
                             </div>
                         </div>
                     </div>
@@ -484,33 +618,35 @@
     </div>
 
     <!-- Élément pour la loupe de zoom, positionné sur toute la page -->
-    <div id="zoom-display" class="hidden absolute bg-white border-2 border-pokemon-blue shadow-lg rounded-md overflow-hidden z-[100]"></div>
+    <div id="zoom-display"
+        class="hidden absolute bg-white border-2 border-pokemon-blue shadow-lg rounded-md overflow-hidden z-[100]">
+    </div>
 
     <script>
         // --- Data Management ---
         // Charger la collection depuis localStorage
         function loadCollectionFromStorage() {
-          const data = localStorage.getItem('collectionData');
-          return data ? JSON.parse(data) : [];
+            const data = localStorage.getItem('collectionData');
+            return data ? JSON.parse(data) : [];
         }
-        
+
         // Sauvegarder la collection dans localStorage
         function saveCollectionToStorage(data) {
-          localStorage.setItem('collectionData', JSON.stringify(data));
+            localStorage.setItem('collectionData', JSON.stringify(data));
         }
-        
+
         // Initialise la collection avec les données du localStorage
         let collectionData = loadCollectionFromStorage();
 
         // Charger la wishlist depuis localStorage
         function loadWishlistFromStorage() {
-          const data = localStorage.getItem('wishlistData');
-          return data ? JSON.parse(data) : [];
+            const data = localStorage.getItem('wishlistData');
+            return data ? JSON.parse(data) : [];
         }
 
         // Sauvegarder la wishlist dans localStorage
         function saveWishlistToStorage(data) {
-          localStorage.setItem('wishlistData', JSON.stringify(data));
+            localStorage.setItem('wishlistData', JSON.stringify(data));
         }
 
         // Initialise la wishlist avec les données du localStorage
@@ -518,13 +654,13 @@
 
         // Charger l'inventaire des items scellés depuis localStorage
         function loadSealedItemsFromStorage() {
-          const data = localStorage.getItem('sealedItemsData');
-          return data ? JSON.parse(data) : [];
+            const data = localStorage.getItem('sealedItemsData');
+            return data ? JSON.parse(data) : [];
         }
 
         // Sauvegarder l'inventaire des items scellés dans localStorage
         function saveSealedItemsToStorage(data) {
-          localStorage.setItem('sealedItemsData', JSON.stringify(data));
+            localStorage.setItem('sealedItemsData', JSON.stringify(data));
         }
 
         // Initialise l'inventaire des items scellés avec les données du localStorage
@@ -533,17 +669,17 @@
         // Variable pour les données des sets (pour le formulaire d'ajout)
         // This object should ideally be defined once, perhaps globally or passed around.
         const setSeriesData = { "ev": { name: "Écarlate et Violet", series: ["Destined Rivals", "Journey Together", "Prismatic Evolutions"] }, "eb": { name: "Épée et Bouclier", series: ["Crown Zenith", "Silver Tempest", "Brilliant Stars"] }, "sl": { name: "Soleil et Lune", series: [] }, "xy": { name: "XY", series: [] }, "bw": { name: "Noir et Blanc", series: [] }, "al": { name: "Appel des légendes", series: [] }, "hs": { name: "HeartGold SoulSilver", series: [] }, "pl": { name: "Platine", series: [] }, "dp": { name: "Diamant et Perle", series: [] }, "ex": { name: "Ex", series: [] }, "wi": { name: "Wizards", series: [] }, "pr": { name: "Promos", series: [] }, "lp": { name: "Ligue Pokémon", series: [] }, "ju": { name: "Jumbos", series: [] }, "tk": { name: "Trainer Kits", series: [] }, "wc": { name: "World Championships", series: [] }, "mc": { name: "McDonald's", series: [] }, "di": { name: "Divers", series: [] } };
-        
+
         // Initialize the application
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Theme management
-            if (localStorage.getItem('theme') === 'dark' || 
+            if (localStorage.getItem('theme') === 'dark' ||
                 (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
             }
 
             // Theme toggle
-            document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.getElementById('theme-toggle').addEventListener('click', function () {
                 document.documentElement.classList.toggle('dark');
                 localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
             });
@@ -551,12 +687,12 @@
             // User menu toggle
             const userMenuButton = document.getElementById('user-menu-button');
             const userMenu = document.getElementById('user-menu');
-            
-            userMenuButton.addEventListener('click', function() {
+
+            userMenuButton.addEventListener('click', function () {
                 userMenu.classList.toggle('hidden');
             });
 
-            document.addEventListener('click', function(event) {
+            document.addEventListener('click', function (event) {
                 if (!userMenuButton.contains(event.target) && !userMenu.contains(event.target)) {
                     userMenu.classList.add('hidden');
                 }
@@ -568,10 +704,10 @@
                 document.querySelectorAll('.page-content').forEach(page => {
                     page.classList.remove('active-page');
                 });
-                
+
                 // Show selected page
                 document.getElementById(`${pageId}-page`).classList.add('active-page');
-                
+
                 // Update navigation buttons
                 document.querySelectorAll('.nav-btn').forEach(btn => {
                     btn.classList.remove('active');
@@ -579,7 +715,7 @@
                         btn.classList.add('active');
                     }
                 });
-                
+
                 // Initialize page content if needed
                 if (pageId === 'dashboard') {
                     updateDashboard();
@@ -643,7 +779,7 @@
 
             // Set up navigation buttons
             document.querySelectorAll('.nav-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
+                btn.addEventListener('click', function () {
                     showPage(this.dataset.page);
                 });
             });
@@ -652,7 +788,7 @@
             showPage('dashboard');
 
             // Collection view toggle
-            document.getElementById('view-grid').addEventListener('click', function() {
+            document.getElementById('view-grid').addEventListener('click', function () {
                 generateCollectionItems('grid', document.getElementById('sets-filter').value);
                 this.classList.add('bg-pokemon-blue', 'text-white');
                 document.getElementById('view-list').classList.remove('bg-pokemon-blue', 'text-white');
@@ -660,7 +796,7 @@
                 localStorage.setItem('collectionView', 'grid'); // Sauvegarde la préférence
             });
 
-            document.getElementById('view-list').addEventListener('click', function() {
+            document.getElementById('view-list').addEventListener('click', function () {
                 generateCollectionItems('list', document.getElementById('sets-filter').value);
                 this.classList.add('bg-pokemon-blue', 'text-white');
                 document.getElementById('view-grid').classList.remove('bg-pokemon-blue', 'text-white');
@@ -668,8 +804,14 @@
                 localStorage.setItem('collectionView', 'list'); // Sauvegarde la préférence
             });
 
+            // Price update button
+            const updatePricesBtn = document.getElementById('update-prices-btn');
+            if (updatePricesBtn) {
+                updatePricesBtn.addEventListener('click', updateAllCardPrices);
+            }
+
             // Sets filter
-            document.getElementById('sets-filter').addEventListener('change', function() {
+            document.getElementById('sets-filter').addEventListener('change', function () {
                 const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
                 generateCollectionItems(currentView, this.value);
             });
@@ -705,31 +847,31 @@
             const addCardModal = document.getElementById('add-card-modal');
             const closeAddCardModal = document.getElementById('close-add-card-modal');
             const addCardForm = document.getElementById('add-card-form');
-            
+
             addCardBtn.addEventListener('click', () => addCardModal.classList.remove('hidden'));
             closeAddCardModal.addEventListener('click', () => addCardModal.classList.add('hidden'));
             addCardModal.addEventListener('click', e => {
-              if (e.target === addCardModal) addCardModal.classList.add('hidden');
+                if (e.target === addCardModal) addCardModal.classList.add('hidden');
             });
-            
-            addCardForm.addEventListener('submit', function(e) {
-              e.preventDefault();
-              const formData = new FormData(addCardForm);
-              const newCard = Object.fromEntries(formData.entries());
-              newCard.id = Date.now();
-              newCard.purchasePrice = parseFloat(newCard.purchasePrice);
-              if (!newCard.set) {
-                  const setCode = newCard.sets;
-                  if (setCode && setSeriesData[setCode]) { newCard.set = setSeriesData[setCode].name; }
-              }
-              collectionData.push(newCard);
-              saveCollectionToStorage(collectionData);
-              addCardForm.reset();
-              addCardModal.classList.add('hidden');
-              const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
-              const currentFilter = document.getElementById('sets-filter').value;
-              generateCollectionItems(currentView, currentFilter);
-              updateDashboard();
+
+            addCardForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const formData = new FormData(addCardForm);
+                const newCard = Object.fromEntries(formData.entries());
+                newCard.id = Date.now();
+                newCard.purchasePrice = parseFloat(newCard.purchasePrice);
+                if (!newCard.set) {
+                    const setCode = newCard.sets;
+                    if (setCode && setSeriesData[setCode]) { newCard.set = setSeriesData[setCode].name; }
+                }
+                collectionData.push(newCard);
+                saveCollectionToStorage(collectionData);
+                addCardForm.reset();
+                addCardModal.classList.add('hidden');
+                const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
+                const currentFilter = document.getElementById('sets-filter').value;
+                generateCollectionItems(currentView, currentFilter);
+                updateDashboard();
             });
 
             // Gestion de la modale d'ajout à la wishlist
@@ -744,7 +886,7 @@
                 if (e.target === addWishlistItemModal) addWishlistItemModal.classList.add('hidden');
             });
 
-            addWishlistItemForm.addEventListener('submit', function(e) {
+            addWishlistItemForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const formData = new FormData(addWishlistItemForm);
                 const newItem = Object.fromEntries(formData.entries());
@@ -804,7 +946,7 @@
             // Initial call to set correct visibility (e.g., if form is pre-filled or for initial state)
             updateSealedImageInputsVisibility();
 
-            addSealedItemForm.addEventListener('submit', function(e) {
+            addSealedItemForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 const formData = new FormData(addSealedItemForm);
                 const newItem = Object.fromEntries(formData.entries());
@@ -821,7 +963,7 @@
                     }
                 });
                 newItem.images = images;
-                
+
                 sealedItemsData.push(newItem);
                 saveSealedItemsToStorage(sealedItemsData);
                 addSealedItemForm.reset();
@@ -900,7 +1042,7 @@
             } else {
                 if (emptyMessageElement) emptyMessageElement.classList.add('hidden');
             }
-            
+
             // Filter cards by sets if needed
             const filteredCards = setsFilter === 'all'
                 ? collectionData
@@ -912,7 +1054,7 @@
 
             if (viewType === 'grid') {
                 container.classList.add('grid', 'grid-cols-2', 'sm:grid-cols-3', 'md:grid-cols-4', 'lg:grid-cols-5', 'gap-4');
-                
+
                 filteredCards.forEach(card => {
                     const cardElement = document.createElement('div');
                     cardElement.className = 'bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-md transition cursor-pointer';
@@ -958,7 +1100,7 @@
             collectionData = collectionData.filter(card => card.id !== cardId);
             saveCollectionToStorage(collectionData); // Save updated collection to localStorage
             document.getElementById('card-modal').classList.add('hidden'); // Close the modal
-            
+
             // Refresh the collection page to reflect the deletion
             const currentView = document.getElementById('view-grid').classList.contains('bg-pokemon-blue') ? 'grid' : 'list';
             const currentFilter = document.getElementById('sets-filter').value;
@@ -1049,7 +1191,7 @@
             const modalImg = document.getElementById('modal-card-img');
             const closeButton = document.getElementById('close-modal');
             const imageControls = document.getElementById('modal-image-controls');
-            
+
             // Gère l'ancienne structure de données (card.image) et la nouvelle (card.imageFront)
             const frontImage = card.imageFront || card.image;
             const backImage = card.imageBack;
@@ -1068,7 +1210,7 @@
                 const rectoBtn = document.createElement('button');
                 rectoBtn.className = 'px-4 py-2 rounded-md text-sm transition';
                 rectoBtn.textContent = 'Recto';
-                
+
                 const versoBtn = document.createElement('button');
                 versoBtn.className = 'px-4 py-2 rounded-md text-sm transition';
                 versoBtn.textContent = 'Verso';
@@ -1093,7 +1235,7 @@
 
                 rectoBtn.onclick = () => switchImage(frontImage, rectoBtn);
                 versoBtn.onclick = () => switchImage(backImage, versoBtn);
-                
+
                 imageControls.appendChild(rectoBtn);
                 imageControls.appendChild(versoBtn);
                 setActiveButton(rectoBtn); // Le bouton Recto est actif par défaut
@@ -1112,10 +1254,20 @@
             if (purchasePriceInput) {
                 purchasePriceInput.value = card.purchasePrice ? card.purchasePrice.toFixed(2) : '0.00';
             }
-            
+
             const notesTextarea = document.getElementById('modal-notes');
             if (notesTextarea) {
                 notesTextarea.value = card.notes || ''; // Assuming a 'notes' property on the card object
+            }
+
+            const cardmarketPriceElement = document.getElementById('modal-cardmarket-price');
+            if (cardmarketPriceElement) {
+                // We assume the price is fetched and stored in card.marketPrice.cardmarket
+                if (card.marketPrice && typeof card.marketPrice.cardmarket === 'number') {
+                    cardmarketPriceElement.textContent = `€${card.marketPrice.cardmarket.toFixed(2)}`;
+                } else {
+                    cardmarketPriceElement.textContent = 'N/A';
+                }
             }
 
             modal.classList.remove('hidden');
@@ -1137,7 +1289,7 @@
             // Clear previous handlers to prevent multiple calls
             saveButton.onclick = null;
             cancelButton.onclick = null;
-            deleteButton.onclick = null; 
+            deleteButton.onclick = null;
 
             // Save button handler
             closeButton.onclick = cleanupAndClose;
@@ -1167,11 +1319,166 @@
             };
         }
 
+        // --- Cardmarket Data Logic (GitHub Version) ---
+        let cardmarketProducts = {};
+        let cardmarketPrices = {};
+        let expansionNameToIdMap = {};
+        let cardmarketDataLoaded = false;
+
+        function normalizeString(str) {
+            if (!str) return '';
+            return str.toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-z0-9\s]/g, "")
+                .replace(/\s+/g, " ")
+                .trim();
+        }
+
+        async function loadCardmarketDataFromGitHub(updateBtn) {
+            // IMPORTANT: Replace with your GitHub username and repository name
+            const GITHUB_USERNAME = 'Nikollect-tcg';
+            const GITHUB_REPO = 'Nikollect-tcg.github.io';
+            const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/main/`;
+
+            const filesToLoad = [
+                { name: 'expansions', url: GITHUB_RAW_URL + 'expansions_6.json' },
+                { name: 'products_singles', url: GITHUB_RAW_URL + 'products_singles_6.json' },
+                { name: 'products_nonsingles', url: GITHUB_RAW_URL + 'products_nonsingles_6.json' },
+                { name: 'price_guide', url: GITHUB_RAW_URL + 'price_guide_6.json' }
+            ];
+
+            try {
+                for (let i = 0; i < filesToLoad.length; i++) {
+                    const file = filesToLoad[i];
+                    updateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Chargement ${file.name}...`;
+                    console.log(`Fetching ${file.name}...`);
+                    const response = await fetch(file.url);
+                    if (!response.ok) throw new Error(`Failed to fetch ${file.name}`);
+                    const data = await response.json();
+
+                    // Process data
+                    if (file.name === 'expansions') {
+                        data.expansions.forEach(exp => {
+                            expansionNameToIdMap[normalizeString(exp.enName)] = exp.idExpansion;
+                            if (exp.abbreviation) {
+                                expansionNameToIdMap[normalizeString(exp.abbreviation)] = exp.idExpansion;
+                            }
+                        });
+                    } else if (file.name === 'products_singles' || file.name === 'products_nonsingles') {
+                        data.products.forEach(product => {
+                            cardmarketProducts[product.idProduct] = product;
+                        });
+                    } else if (file.name === 'price_guide') {
+                        data.prices.forEach(price => {
+                            cardmarketPrices[price.idProduct] = price;
+                        });
+                    }
+                }
+                cardmarketDataLoaded = true;
+                console.log("Cardmarket data loaded successfully from GitHub.");
+            } catch (error) {
+                console.error("Error loading Cardmarket data from GitHub:", error);
+                alert("Erreur lors du chargement des données depuis GitHub. Vérifiez les URLs et que les fichiers existent dans votre dépôt.");
+                throw error; // Stop the process
+            }
+        }
+
+        function findProductInCardmarketDB({ name, set, number }) {
+            const normalizedName = normalizeString(name);
+            const normalizedSet = normalizeString(set);
+            const setExpansionId = expansionNameToIdMap[normalizedSet];
+
+            let foundProduct = null;
+            let bestMatchScore = -1;
+
+            for (const id in cardmarketProducts) {
+                const product = cardmarketProducts[id];
+                const normalizedProductName = normalizeString(product.name);
+                const productExpansionId = product.idExpansion;
+                let currentScore = 0;
+
+                if (product.idCategory === 1 && number && product.number === number) {
+                    if (normalizedProductName === normalizedName && productExpansionId === setExpansionId) {
+                        currentScore = 100;
+                    }
+                }
+
+                if (currentScore < 90 && normalizedProductName === normalizedName && productExpansionId === setExpansionId) {
+                    currentScore = 90;
+                }
+
+                if (currentScore < 80 && normalizedProductName === normalizedName && set) {
+                    const productExpansionNameNormalized = product.expansionName ? normalizeString(product.expansionName) : '';
+                    const productCategoryNameNormalized = product.categoryName ? normalizeString(product.categoryName) : '';
+                    if (productExpansionNameNormalized.includes(normalizedSet) || productCategoryNameNormalized.includes(normalizedSet)) {
+                        currentScore = 80;
+                    }
+                }
+
+                if (currentScore < 70 && normalizedProductName === normalizedName) {
+                    currentScore = 70;
+                }
+
+                if (currentScore > bestMatchScore) {
+                    foundProduct = product;
+                    bestMatchScore = currentScore;
+                    if (bestMatchScore === 100) break;
+                }
+            }
+
+            if (foundProduct) {
+                const price = cardmarketPrices[foundProduct.idProduct];
+                return { product: foundProduct, price: price || null };
+            }
+            return null;
+        }
+
+        async function updateAllCardPrices() {
+            const updateBtn = document.getElementById('update-prices-btn');
+            const originalText = updateBtn.innerHTML;
+            updateBtn.disabled = true;
+
+            try {
+                if (!cardmarketDataLoaded) {
+                    await loadCardmarketDataFromGitHub(updateBtn);
+                }
+
+                let updatedCount = 0;
+                const totalCards = collectionData.length;
+
+                for (let i = 0; i < totalCards; i++) {
+                    const card = collectionData[i];
+                    updateBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Valorisation (${i + 1}/${totalCards})...`;
+
+                    const foundData = findProductInCardmarketDB(card);
+                    if (foundData && foundData.price && typeof foundData.price.avg1 === 'number') {
+                        if (!card.marketPrice) card.marketPrice = {};
+                        card.marketPrice.cardmarket = foundData.price.avg1;
+                        updatedCount++;
+                    }
+                }
+
+                saveCollectionToStorage(collectionData);
+                alert(`${updatedCount} prix ont été mis à jour !`);
+
+                // Refresh the view
+                showPage('collection');
+
+            } catch (error) {
+                console.error("Erreur lors de la valorisation de la collection:", error);
+                alert("Une erreur est survenue. Impossible de valoriser la collection.");
+            } finally {
+                updateBtn.innerHTML = originalText;
+                updateBtn.disabled = false;
+            }
+        }
+
         // Générer les items de la wishlist (avec gestion des vues grille/liste)
         function generateWishlistItems(viewType = 'grid') {
             const container = document.getElementById('wishlist-container');
             container.innerHTML = '';
-            
+
             const emptyMessageElement = document.getElementById('wishlist-empty-message');
             if (wishlistData.length === 0) {
                 if (emptyMessageElement) emptyMessageElement.classList.remove('hidden');
@@ -1191,7 +1498,7 @@
 
             wishlistData.forEach(item => {
                 const itemElement = document.createElement('div');
-                
+
                 if (viewType === 'grid') {
                     itemElement.className = 'bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-md transition cursor-pointer relative p-4'; // Added p-4 for padding
                     itemElement.innerHTML = `
@@ -1275,7 +1582,7 @@
 
             sealedItemsData.forEach(item => {
                 const itemElement = document.createElement('div');
-                
+
                 if (viewType === 'grid') {
                     itemElement.className = 'bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden hover:shadow-md transition cursor-pointer p-4'; // Added p-4 for padding
                     itemElement.setAttribute('onclick', `showSealedItemModal(${item.id})`);
@@ -1361,7 +1668,7 @@
                 imgElement.alt = item.name;
                 setupImageZoom(imgElement, imageUrl, modal); // Update zoom with new image
                 imgCounter.textContent = `${index + 1} / ${item.images.length}`;
-                
+
                 // Hide/show navigation buttons based on index
                 prevImgBtn.classList.toggle('hidden', index === 0);
                 nextImgBtn.classList.toggle('hidden', index === item.images.length - 1);
@@ -1370,7 +1677,7 @@
             // Populate modal with item data
             nameElement.textContent = item.name;
             descriptionElement.textContent = item.description || 'Aucune description';
-            
+
             // Initial display of the first image and setup navigation
             if (item.images && item.images.length > 0) {
                 displayImage(currentImageIndex);
@@ -1419,8 +1726,8 @@
                     sealedItemsData[itemIndex].quantity = parseInt(quantityInput.value);
                     sealedItemsData[itemIndex].purchasePrice = parseFloat(priceInput.value);
                     sealedItemsData[itemIndex].notes = notesTextarea.value;
-                    saveSealedItemsToStorage(sealedItemsData); 
-                    cleanupAndClose(); 
+                    saveSealedItemsToStorage(sealedItemsData);
+                    cleanupAndClose();
                     const currentView = localStorage.getItem('sealedItemsView') || 'grid';
                     generateSealedItems(currentView);
                     updateDashboard();
@@ -1428,13 +1735,13 @@
             };
 
             deleteButton.onclick = () => {
-                cleanupAndClose(); 
+                cleanupAndClose();
                 deleteSealedItem(itemId);
             };
         }
 
         // Prevent default behavior for all anchor tags
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (e.target.tagName === 'A') {
                 e.preventDefault();
             }
@@ -1456,7 +1763,7 @@
             generateWishlistItems('grid');
             localStorage.setItem('wishlistView', 'grid'); // Save preference
         });
-        
+
         wishlistViewListBtn.addEventListener('click', () => {
             wishlistViewListBtn.classList.add('bg-pokemon-blue', 'text-white');
             wishlistViewListBtn.classList.remove('bg-gray-200', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-white');
@@ -1521,4 +1828,5 @@
         generateSealedItems(initialSealedItemsView);
     </script>
 </body>
+
 </html>
