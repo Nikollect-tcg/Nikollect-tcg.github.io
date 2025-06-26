@@ -1389,8 +1389,8 @@
                             throw new Error(`Invalid data structure for products in ${file.name}`); // Propagate error pour plus de clarté
                         }
                     } else if (file.name === 'price_guide') {
-                        if (data.prices && Array.isArray(data.prices)) {
-                            data.prices.forEach(price => {
+                        if (data.priceGuides && Array.isArray(data.priceGuides)) {
+                            data.priceGuides.forEach(price => {
                                 cardmarketPrices[price.idProduct] = price;
                             });
                         } else {
