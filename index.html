@@ -1326,23 +1326,27 @@
         let cardmarketDataLoaded = false;
 
         function normalizeString(str) {
-            if (!str) return '';
-            return str.toLowerCase()
-                .normalize("NFD")
-                .replace(/[\u0300-\u036f]/g, "")
-                .replace(/[^a-z0-9\s]/g, "")
-                .replace(/\s+/g, " ")
-                .trim();
+            if (!str) return ''; // Handle null or undefined input
+            return String(str).toLowerCase() // Ensure it's a string before calling methods
+                .normalize("NFD") // Normalize to NFD (Canonical Decomposition)
+                .replace(/[\u0300-\u036f]/g, "") // Remove diacritics (accents, etc.)
+                .replace(/[^a-z0-9\s]/g, "") // Remove non-alphanumeric characters (keep spaces)
+                .replace(/\s+/g, " ") // Replace multiple spaces with single space
+                .trim(); // Trim leading/trailing whitespace
         }
 
         async function loadCardmarketDataFromGitHub(updateBtn) {
-            // IMPORTANT: Replace with your GitHub username and repository name
+            // IMPORTANT: Les fichiers Cardmarket sont très volumineux. Les charger directement dans le navigateur
+            // peut entraîner des problèmes de performance, des blocages, voire des plantages,
+            // en particulier sur des connexions lentes ou des appareils moins puissants.
+            // Pour une solution robuste avec des données réelles et dynamiques, un proxy côté serveur est fortement recommandé.
+            // Pour les tests, envisagez d'utiliser des fichiers JSON mock beaucoup plus petits dans votre dépôt.
             const GITHUB_USERNAME = 'Nikollect-tcg';
             const GITHUB_REPO = 'Nikollect-tcg.github.io';
             const GITHUB_RAW_URL = `https://raw.githubusercontent.com/${GITHUB_USERNAME}/${GITHUB_REPO}/main/`;
 
             const filesToLoad = [
-                //{ name: 'expansions', url: GITHUB_RAW_URL + 'expansions_6.json' },
+                { name: 'expansions', url: GITHUB_RAW_URL + 'expansions_6.json' },
                 { name: 'products_singles', url: GITHUB_RAW_URL + 'products_singles_6.json' },
                 { name: 'products_nonsingles', url: GITHUB_RAW_URL + 'products_nonsingles_6.json' },
                 { name: 'price_guide', url: GITHUB_RAW_URL + 'price_guide_6.json' }
@@ -1357,26 +1361,45 @@
                     if (!response.ok) throw new Error(`Failed to fetch ${file.name}`);
                     const data = await response.json();
 
+                    // Vérification robuste que les données parsées sont bien un objet
+                    if (typeof data !== 'object' || data === null) {
+                        throw new Error(`Invalid JSON format: ${file.name} returned non-object or null data.`);
+                    }
+
                     // Process data
-                    //if (file.name === 'expansions') {
-                    //    data.expansions.forEach(exp => {
-                    //        expansionNameToIdMap[normalizeString(exp.enName)] = exp.idExpansion;
-                    //        if (exp.abbreviation) {
-                    //            expansionNameToIdMap[normalizeString(exp.abbreviation)] = exp.idExpansion;
-                    //        }
-                    //    });
-                    //} else 
-                    if (file.name === 'products_singles' || file.name === 'products_nonsingles') {
-                        data.products.forEach(product => {
-                            cardmarketProducts[product.idProduct] = product;
-                        });
+                    if (file.name === 'expansions') {
+                        if (data.expansions && Array.isArray(data.expansions)) {
+                            data.expansions.forEach(exp => {
+                                expansionNameToIdMap[normalizeString(exp.enName)] = exp.idExpansion;
+                                if (exp.abbreviation) {
+                                    expansionNameToIdMap[normalizeString(exp.abbreviation)] = exp.idExpansion;
+                                }
+                            });
+                        } else {
+                            console.warn(`Warning: Expected 'expansions' array not found or invalid in ${file.name}. Data received:`, data);
+                            throw new Error(`Invalid data structure for expansions in ${file.name}`); // Propagate error pour plus de clarté
+                        }
+                    } else if (file.name === 'products_singles' || file.name === 'products_nonsingles') {
+                        if (data.products && Array.isArray(data.products)) {
+                            data.products.forEach(product => {
+                                cardmarketProducts[product.idProduct] = product;
+                            });
+                        } else {
+                            console.warn(`Warning: Expected 'products' array not found or invalid in ${file.name}. Data received:`, data);
+                            throw new Error(`Invalid data structure for products in ${file.name}`); // Propagate error pour plus de clarté
+                        }
                     } else if (file.name === 'price_guide') {
-                        data.prices.forEach(price => {
-                            cardmarketPrices[price.idProduct] = price;
-                        });
+                        if (data.prices && Array.isArray(data.prices)) {
+                            data.prices.forEach(price => {
+                                cardmarketPrices[price.idProduct] = price;
+                            });
+                        } else {
+                            console.warn(`Warning: Expected 'prices' array not found or invalid in ${file.name}. Data received:`, data);
+                            throw new Error(`Invalid data structure for prices in ${file.name}`); // Propagate error pour plus de clarté
+                        }
                     }
                 }
-                cardmarketDataLoaded = true;
+                cardmarketDataLoaded = true; // Set to true only if ALL files processed without error
                 console.log("Cardmarket data loaded successfully from GitHub.");
             } catch (error) {
                 console.error("Error loading Cardmarket data from GitHub:", error);
@@ -1388,7 +1411,7 @@
         function findProductInCardmarketDB({ name, set, number }) {
             const normalizedName = normalizeString(name);
             const normalizedSet = normalizeString(set);
-            //const setExpansionId = expansionNameToIdMap[normalizedSet];
+            const setExpansionId = expansionNameToIdMap[normalizedSet];
 
             let foundProduct = null;
             let bestMatchScore = -1;
