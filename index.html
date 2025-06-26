@@ -1423,12 +1423,12 @@
                 let currentScore = 0;
 
                 if (product.idCategory === 1 && number && product.number === number) {
-                    if (normalizedProductName === normalizedName && productExpansionId) {//=== setExpansionId) {
+                    if (normalizedProductName === normalizedName && productExpansionId === setExpansionId) {
                         currentScore = 100;
                     }
                 }
 
-                if (currentScore < 90 && normalizedProductName === normalizedName && productExpansionId) {//=== setExpansionId) {
+                if (currentScore < 90 && normalizedProductName === normalizedName && productExpansionId === setExpansionId) {
                     currentScore = 90;
                 }
 

@@ -1,0 +1,2186 @@
+{
+  "version": 1,
+  "createdAt": "2024-07-30T10:00:00Z",
+  "expansions": [
+    {
+      "idExpansion": 5402,
+      "enName": "151",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6099,
+      "enName": "151C: Collect 151 Gathering",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5992,
+      "enName": "WCD 2024: Fernando Cifuentes \"Crushing Thorn\"",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4345,
+      "enName": "25th Anniversary Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4346,
+      "enName": "25th Anniversary Edition",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4389,
+      "enName": "25th Anniversary Golden Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5877,
+      "enName": "ADV Expansion Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4280,
+      "enName": "Advent of Arceus",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1645,
+      "enName": "Alola Collection: Lunala Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3951,
+      "enName": "Alolan Moonlight",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1570,
+      "enName": "Appel des légendes",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1660,
+      "enName": "Ancient Origins",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5478,
+      "enName": "Ancient Roar",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1537,
+      "enName": "Aquapolis",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1565,
+      "enName": "Arceus",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4279,
+      "enName": "Arceus LV.X Deck: Grass & Fire",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4278,
+      "enName": "Arceus LV.X Deck: Lightning & Psychic",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3974,
+      "enName": "Ash vs Team Rocket Deck Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4979,
+      "enName": "Astral Radiance",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4508,
+      "enName": "Awakening Legends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4004,
+      "enName": "Awakening Psychic King",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3926,
+      "enName": "Awakened Heroes",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6168,
+      "enName": "CSVL1C: Adventure Special Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4024,
+      "enName": "Bandit Ring",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1523,
+      "enName": "Base Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1527,
+      "enName": "Base Set 2",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5021,
+      "enName": "Base Expansion Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5890,
+      "enName": "Battle Academy 2024",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5996,
+      "enName": "Battle Partners",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5997,
+      "enName": "Battle Partners Deck Build Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3675,
+      "enName": "Battle Styles",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4211,
+      "enName": "Battle Theme Deck: Victini",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4286,
+      "enName": "Beat of the Frontier",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4216,
+      "enName": "Beginning Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1571,
+      "enName": "Black & White",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1630,
+      "enName": "BW Trainer Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6130,
+      "enName": "Black Bolt",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6134,
+      "enName": "Black Bolt",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4190,
+      "enName": "Black Kyurem EX Battle Strength Deck",
+      "abbreviation": null
+    },
+    {
+      "idProduct": 4014,
+      "enName": "Blue Shock",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4330,
+      "enName": "Blue Sky Stream",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4289,
+      "enName": "Bonds to the End of Time",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1577,
+      "enName": "Boundaries Crossed",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1678,
+      "enName": "BREAKthrough",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1687,
+      "enName": "BREAKpoint",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4089,
+      "enName": "BREAK Starter Pack: 20th Anniversary",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4434,
+      "enName": "Brilliant Stars",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4248,
+      "enName": "Brock of Pewter City Gym Trainer Battle Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1824,
+      "enName": "Burning Shadows",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6001,
+      "enName": "CBB1C: Gem Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6111,
+      "enName": "CBB2C: Gem Pack Vol. 2",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5838,
+      "enName": "CS4.5C: Final Flame Dance",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1570,
+      "enName": "Call of Legends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4347,
+      "enName": "Celebrations",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2320,
+      "enName": "Celestial Storm",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3419,
+      "enName": "Champion’s Path",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3886,
+      "enName": "Champion Road",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4467,
+      "enName": "Challenge from the Darkness",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4174,
+      "enName": "Chilling Reign",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5713,
+      "enName": "Clash of the Blue Sky",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4261,
+      "enName": "Clash at the Summit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5315,
+      "enName": "Clay Burst",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4212,
+      "enName": "Cobalion Battle Strength Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4194,
+      "enName": "Cold Flare",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4064,
+      "enName": "Collection X",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4059,
+      "enName": "Collection Y",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3966,
+      "enName": "Collection Moon",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3971,
+      "enName": "Collection Sun",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2644,
+      "enName": "Cosmic Eclipse",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5636,
+      "enName": "Crimson Haze",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1843,
+      "enName": "Crimson Invasion",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4507,
+      "enName": "Crossing the Ruins...",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3994,
+      "enName": "Cruel Traitor",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4305,
+      "enName": "Cry from the Mysterious",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5201,
+      "enName": "Crown Zenith",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5574,
+      "enName": "Cyber Judge",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1628,
+      "enName": "DP Trainer Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1575,
+      "enName": "Dark Explorers",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3861,
+      "enName": "Dark Order",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5048,
+      "enName": "Dark Phantasma",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4204,
+      "enName": "Dark Rush",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3199,
+      "enName": "Darkness Ablaze",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3936,
+      "enName": "Darkness that Consumes Light",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4509,
+      "enName": "Darkness, and to Light...",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4308,
+      "enName": "Dawn Dash",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4258,
+      "enName": "Decidueye GX Starter Set Grass",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6096,
+      "enName": "Destined Rivals",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2438,
+      "enName": "Detective Pikachu",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1555,
+      "enName": "Diamant et Perle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3836,
+      "enName": "Double Blaze",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1648,
+      "enName": "Double Crisis",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2351,
+      "enName": "Dragon Majesty",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3891,
+      "enName": "Dragon Storm",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4200,
+      "enName": "Dragon Blade",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4201,
+      "enName": "Dragon Blast",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4203,
+      "enName": "Dragon Selection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1576,
+      "enName": "Dragons Exalted",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3806,
+      "enName": "Dream League",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1539,
+      "enName": "EX Ruby & Sapphire",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1540,
+      "enName": "EX Sandstorm",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1541,
+      "enName": "EX Dragon",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1542,
+      "enName": "EX Team Magma vs Team Aqua",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1543,
+      "enName": "EX Hidden Legends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1544,
+      "enName": "EX FireRed & LeafGreen",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1545,
+      "enName": "EX Team Rocket Returns",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1546,
+      "enName": "EX Deoxys",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1547,
+      "enName": "EX Emerald",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1548,
+      "enName": "EX Unseen Forces",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1549,
+      "enName": "EX Delta Species",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1550,
+      "enName": "EX Legend Maker",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1551,
+      "enName": "EX Holon Phantoms",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1552,
+      "enName": "EX Crystal Guardians",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1553,
+      "enName": "EX Dragon Frontiers",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1554,
+      "enName": "EX Power Keepers",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1626,
+      "enName": "EX Trainer Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1627,
+      "enName": "EX Trainer Kit 2",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4180,
+      "enName": "EX Battle Boost",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4239,
+      "enName": "Eevee Heroes",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4240,
+      "enName": "Eevee Heroes VMAX Special Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4029,
+      "enName": "Emerald Break",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1572,
+      "enName": "Emerging Powers",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4306,
+      "enName": "Entry Pack '08",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4318,
+      "enName": "Entry Pack DP",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4245,
+      "enName": "Espeon & Deoxys GX Tag Team GX Starter Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1742,
+      "enName": "Evolutions",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4328,
+      "enName": "Evolving Skies",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4187,
+      "enName": "Everyone's Exciting Battle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1536,
+      "enName": "Expedition Base Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4169,
+      "enName": "Expansion Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3989,
+      "enName": "Expansion Pack 20th Anniversary",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3219,
+      "enName": "Explosive Flame Walker",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4490,
+      "enName": "Extra Regulation Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3946,
+      "enName": "Facing a New Trial",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3871,
+      "enName": "Fairy Rise",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1706,
+      "enName": "Fates Collide",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3999,
+      "enName": "Fever-Burst Fighter",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1583,
+      "enName": "Flashfire",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5714,
+      "enName": "Flight of Legends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2075,
+      "enName": "Forbidden Light",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3896,
+      "enName": "Forbidden Light JP",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1526,
+      "enName": "Fossil",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4195,
+      "enName": "Freeze Bolt",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3841,
+      "enName": "Full Metal Wall",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1584,
+      "enName": "Furious Fists",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4382,
+      "enName": "Fusion Strike",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5479,
+      "enName": "Future Flash",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3831,
+      "enName": "GG End",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4039,
+      "enName": "Gaia Volcano",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4297,
+      "enName": "Galactic's Conquest",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4251,
+      "enName": "Grass Lurantis GX Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5723,
+      "enName": "Grass Quick Construction Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3826,
+      "enName": "Great Detective Pikachu",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1558,
+      "enName": "Great Encounters",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5686,
+      "enName": "Guren Town Gym",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1800,
+      "enName": "Guardians Rising",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1530,
+      "enName": "Gym Challenge",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1529,
+      "enName": "Gym Heroes",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3916,
+      "enName": "GX Battle Boost",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3856,
+      "enName": "GX Ultra Shiny",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4208,
+      "enName": "Hail Blizzard",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5682,
+      "enName": "Hanada City Gym",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1566,
+      "enName": "HeartGold & SoulSilver",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1566,
+      "enName": "HeartGold SoulSilver",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6037,
+      "enName": "Heat Wave Arena",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4303,
+      "enName": "Heatran vs Regigigas Deck Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5703,
+      "enName": "Holon Phantom",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5709,
+      "enName": "Holon Research Tower",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5715,
+      "enName": "Holon Research Tower Lightning Quarter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5717,
+      "enName": "Holon Research Tower Fire Quarter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5716,
+      "enName": "Holon Research Tower Water Quarter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1629,
+      "enName": "HS Trainer Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4134,
+      "enName": "Hyper Metal Chain Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5695,
+      "enName": "Imprison! Gardevoir ex Constructed Standard Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5127,
+      "enName": "Incandescent Arcana",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3274,
+      "enName": "Infinity Zone",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4242,
+      "enName": "Inteleon VMAX High-Class Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4302,
+      "enName": "Intense Fight in the Destroyed Sky",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5059,
+      "enName": "Intro Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5061,
+      "enName": "Intro Pack Neo",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3956,
+      "enName": "Islands Await You",
+      "abbreviation": null
+    },
+    {
+      "idProduct": 4172,
+      "enName": "Jet Black Spirit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6006,
+      "enName": "Journey Together",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1525,
+      "enName": "Jungle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4197,
+      "enName": "Keldeo Battle Strength Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5683,
+      "enName": "Kuchiba City Gym",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4466,
+      "enName": "Leaders' Stadium",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1535,
+      "enName": "Legendary Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1581,
+      "enName": "Legendary Treasures",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3384,
+      "enName": "Legendary Heartbeat",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4114,
+      "enName": "Legendary Shine Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1560,
+      "enName": "Legends Awakened",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4262,
+      "enName": "Lost Link",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5093,
+      "enName": "Lost Origin",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5094,
+      "enName": "Lost Abyss",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5868,
+      "enName": "Magma Deck Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5869,
+      "enName": "Magma VS Aqua: Two Ambitions",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1559,
+      "enName": "Majestic Dawn",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5690,
+      "enName": "Mask of Change",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5718,
+      "enName": "Master Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3751,
+      "enName": "Matchless Fighters",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4139,
+      "enName": "MCharizard EX Mega Battle Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4079,
+      "enName": "MAudino EX Mega Battle Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4119,
+      "enName": "MRayquaza EX Mega Battle Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3738,
+      "enName": "McDonald's Collection 25th Anniversary",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5135,
+      "enName": "McDonald's Match Battle 2022",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5430,
+      "enName": "McDonald's Match Battle 2023",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5978,
+      "enName": "McDonald's Dragon Discovery",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4178,
+      "enName": "McDonald's Pokémon-e Minimum Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4182,
+      "enName": "Megalo Cannon",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5722,
+      "enName": "Meganium Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5863,
+      "enName": "Metagross Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5719,
+      "enName": "Mirage's Mew Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5710,
+      "enName": "Mirage Forest",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5700,
+      "enName": "Miracle Crystal",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3816,
+      "enName": "Miracle Twin",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5873,
+      "enName": "Miracle of the Desert",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4248,
+      "enName": "Misty of Cerulean City Gym Trainer Battle Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4309,
+      "enName": "Moonlit Pursuit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5874,
+      "enName": "Mudkip Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5526,
+      "enName": "My First Battle: Bulbasaur & Pikachu",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4069,
+      "enName": "Mythical & Legendary Dream Shine Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1556,
+      "enName": "Mysterious Treasures",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5025,
+      "enName": "Mysterious Mountains",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4464,
+      "enName": "Mystery of the Fossils",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1534,
+      "enName": "Neo Destiny",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1532,
+      "enName": "Neo Discovery",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1531,
+      "enName": "Neo Genesis",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1533,
+      "enName": "Neo Revelation",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1574,
+      "enName": "Next Destinies",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3846,
+      "enName": "Night Unison",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5757,
+      "enName": "Night Wanderer",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5681,
+      "enName": "Nivi City Gym",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1573,
+      "enName": "Noble Victories",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5693,
+      "enName": "Offense and Defense of the Furthest Ends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5385,
+      "enName": "Obsidian Flames",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5698,
+      "enName": "Ocean's Kyogre ex Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1613,
+      "enName": "POP Series 1",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1614,
+      "enName": "POP Series 2",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1615,
+      "enName": "POP Series 3",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1616,
+      "enName": "POP Series 4",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1617,
+      "enName": "POP Series 5",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1618,
+      "enName": "POP Series 6",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1619,
+      "enName": "POP Series 7",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1620,
+      "enName": "POP Series 8",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1621,
+      "enName": "POP Series 9",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5335,
+      "enName": "Paldea Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5318,
+      "enName": "Paldea Evolved",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5546,
+      "enName": "Paldean Fates",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5444,
+      "enName": "Paradox Rift",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5156,
+      "enName": "Paradigm Trigger",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1521,
+      "enName": "Phantom Forces",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4044,
+      "enName": "Phantom Gate",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1580,
+      "enName": "Plasma Blast",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1579,
+      "enName": "Plasma Freeze",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4193,
+      "enName": "Plasma Gale",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1578,
+      "enName": "Plasma Storm",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4188,
+      "enName": "Team Plasma Battle Gift Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4192,
+      "enName": "Team Plasma's Powered Half Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1562,
+      "enName": "Platine",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5204,
+      "enName": "Play! Pokémon Prize Pack Series One",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5313,
+      "enName": "Play! Pokémon Prize Pack Series Two",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5431,
+      "enName": "Play! Pokémon Prize Pack Series Three",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5620,
+      "enName": "Play! Pokémon Prize Pack Series Four",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5849,
+      "enName": "Play! Pokémon Prize Pack Series Five",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6041,
+      "enName": "Play! Pokémon Prize Pack Series Six",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4505,
+      "enName": "Poké Card Creator Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4094,
+      "enName": "PokéKyun Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5328,
+      "enName": "Pokémon Card 151",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4168,
+      "enName": "Pokémon Card VS",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5051,
+      "enName": "Pokémon GO",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4786,
+      "enName": "Pokémon GO Enhanced Expansion Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4463,
+      "enName": "Pokémon Jungle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1634,
+      "enName": "Pokémon Rumble",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4257,
+      "enName": "Premium Trainer Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4515,
+      "enName": "Premium Trainer Box VSTAR",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5221,
+      "enName": "Premium Trainer Box ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4074,
+      "enName": "Premium Champion Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1585,
+      "enName": "Primal Clash",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5944,
+      "enName": "Prismatic Evolutions",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4209,
+      "enName": "Psycho Drive",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4009,
+      "enName": "Rage of the Broken Heavens",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5432,
+      "enName": "Raging Surf",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4315,
+      "enName": "Rampardos the Attacker",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3697,
+      "enName": "Rapid Strike Master",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5727,
+      "enName": "Rayquaza Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3279,
+      "enName": "Rebellion Crash",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3143,
+      "enName": "Rebel Clash",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4210,
+      "enName": "Red Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4019,
+      "enName": "Red Flash",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4281,
+      "enName": "Regigigas LV.X Collection Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3811,
+      "enName": "Remix Bout",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4206,
+      "enName": "Reshiram EX Battle Strength Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4265,
+      "enName": "Reviving Legends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1563,
+      "enName": "Rising Rivals",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4049,
+      "enName": "Rising Fist",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1649,
+      "enName": "Roaring Skies",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4256,
+      "enName": "Rockruff Full Power Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4465,
+      "enName": "Rocket Gang",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5712,
+      "enName": "Rocket Gang Strikes Back",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5409,
+      "enName": "Ruler of the Black Flame",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5872,
+      "enName": "Rulers of the Heavens",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1758,
+      "enName": "SM Trainer Kit: Lycanroc & Alolan Raichu",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2070,
+      "enName": "SM Trainer Kit: Alolan Sandslash & Alolan Ninetales",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5216,
+      "enName": "Scarlet ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5223,
+      "enName": "Scarlet & Violet",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5212,
+      "enName": "Scarlet & Violet Promos",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5351,
+      "enName": "Scarlet & Violet ex Special Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1557,
+      "enName": "Secret Wonders",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4317,
+      "enName": "Secret of the Lakes",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4283,
+      "enName": "Shaymin LV.X Collection Pack",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3294,
+      "enName": "Shield",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1842,
+      "enName": "Shining Legends",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3931,
+      "enName": "Shining Legends JP",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4313,
+      "enName": "Shining Darkness",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3580,
+      "enName": "Shiny Star V",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5519,
+      "enName": "Shiny Treasure ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3479,
+      "enName": "Shocking Volt Tackle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5694,
+      "enName": "Shockwave! Tyranitar ex Constructed Standard Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5760,
+      "enName": "Shrouded Fable",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4171,
+      "enName": "Silver Lance",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5725,
+      "enName": "Silver Deck Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5142,
+      "enName": "Silver Tempest",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3712,
+      "enName": "Single Strike Master",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3717,
+      "enName": "Single Strike Premium Trainer Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1538,
+      "enName": "Skyridge",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3821,
+      "enName": "Sky Legend",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3881,
+      "enName": "Sky-Splitting Charisma",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5314,
+      "enName": "Snow Hazard",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4272,
+      "enName": "SoulSilver Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4974,
+      "enName": "Space Juggler",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5179,
+      "enName": "Special Battle Set Charizard VSTAR vs Rayquaza VMAX",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5024,
+      "enName": "Split Earth",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4186,
+      "enName": "Spiral Force",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5218,
+      "enName": "ex Starter Set Sprigatito & Lucario ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5219,
+      "enName": "ex Starter Set Fuecoco & Ampharos ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5220,
+      "enName": "ex Starter Set Quaxly & Mimikyu ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5299,
+      "enName": "ex Starter Set Pikachu ex & Pawmot",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6016,
+      "enName": "Starter Set ex Marnie's Morpeko & Grimmsnarl ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6017,
+      "enName": "Starter Set ex Steven's Beldum & Metagross ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4440,
+      "enName": "Star Birth",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1716,
+      "enName": "Steam Siege",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5726,
+      "enName": "Black Deck Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5720,
+      "enName": "Feraligatr Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5802,
+      "enName": "Stellar Crown",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5782,
+      "enName": "Stellar Miracle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5835,
+      "enName": "Stellar Miracle Deck Build Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5841,
+      "enName": "Stellar Tera Type Starter Set Sylveon ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5842,
+      "enName": "Stellar Tera Type Starter Set Ceruledge ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1561,
+      "enName": "Stormfront",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3961,
+      "enName": "Strength Expansion Pack Sun & Moon",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1745,
+      "enName": "Sun & Moon",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4246,
+      "enName": "Sun & Moon Family Pokémon Card Game",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3866,
+      "enName": "Super-Burst Impact",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5901,
+      "enName": "Super Electric Breaker",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1564,
+      "enName": "Supreme Victors",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5879,
+      "enName": "Surging Sparks",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3289,
+      "enName": "Sword",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2921,
+      "enName": "Sword & Shield",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3600,
+      "enName": "Sword & Shield Starter Decks",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3615,
+      "enName": "Sword & Shield Premium Trainer Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4243,
+      "enName": "Sword & Shield Family Pokémon Card Game",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3851,
+      "enName": "Tag Bolt",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3776,
+      "enName": "Tag Team GX: Tag All Stars",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4247,
+      "enName": "Tag Team GX Deck Build Box",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5684,
+      "enName": "Tamamushi City Gym",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1528,
+      "enName": "Team Rocket",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4304,
+      "enName": "Temple of Anger",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5476,
+      "enName": "Terastal Starter Set Skeledirge ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5477,
+      "enName": "Terastal Starter Set Mewtwo ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5928,
+      "enName": "Terastal Festival ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3984,
+      "enName": "The Best of XY",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6092,
+      "enName": "The Glory of Team Rocket",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5022,
+      "enName": "The Town on No Map",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4185,
+      "enName": "Thunder Knuckle",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3876,
+      "enName": "Thunderclap Spark",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4034,
+      "enName": "Tidal Storm",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4973,
+      "enName": "Time Gazer",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3941,
+      "enName": "To Have Seen the Battle Rainbow",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5875,
+      "enName": "Torchic Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4329,
+      "enName": "Towering Perfection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5876,
+      "enName": "Treecko Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5138,
+      "enName": "Trick or Trade BOOster",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5405,
+      "enName": "Trick or Trade 2023 BOOster",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5796,
+      "enName": "Trick or Trade 2024 BOOster",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5257,
+      "enName": "Triplet Beat",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1569,
+      "enName": "Triumphant",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4357,
+      "enName": "Tropical Island",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5691,
+      "enName": "Twilight Masquerade",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5721,
+      "enName": "Typhlosion Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3901,
+      "enName": "Ultra Force",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3906,
+      "enName": "Ultra Moon",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2065,
+      "enName": "Ultra Prism",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3911,
+      "enName": "Ultra Sun",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3921,
+      "enName": "Ultradimensional Beasts",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4245,
+      "enName": "Umbreon & Darkrai GX Tag Team GX Starter Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1568,
+      "enName": "Undaunted",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5864,
+      "enName": "Undone Seal",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2487,
+      "enName": "Unified Minds",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1567,
+      "enName": "Unleashed",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2437,
+      "enName": "Unbroken Bonds",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3389,
+      "enName": "V Starter Decks",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3284,
+      "enName": "VMAX Rising",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3585,
+      "enName": "VMAX Starter Deck: Venusaur VMAX",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3590,
+      "enName": "VMAX Starter Deck: Blastoise VMAX",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3595,
+      "enName": "VMAX Starter Decks: Charizard VMAX",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3610,
+      "enName": "VMAX Special Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5096,
+      "enName": "VSTAR & VMAX High Class Deck Zeraora",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5097,
+      "enName": "VSTAR & VMAX High Class Deck Deoxys",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5098,
+      "enName": "VSTAR Special Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5198,
+      "enName": "VSTAR Universe",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5729,
+      "enName": "Venusaur Random Constructed Starter Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4211,
+      "enName": "Battle Theme Deck: Victini",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5217,
+      "enName": "Violet ex",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3484,
+      "enName": "Vivid Voltage",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4190,
+      "enName": "White Kyurem EX Battle Strength Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6131,
+      "enName": "White Flare",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 6135,
+      "enName": "White Flare",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4213,
+      "enName": "White Collection",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4054,
+      "enName": "Wild Blaze",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5573,
+      "enName": "Wild Force",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5023,
+      "enName": "Wind from the Sea",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2107,
+      "enName": "Worlds 2022 Blue Pikachu Coin",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5241,
+      "enName": "World Championships 2023",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5410,
+      "enName": "World Championships 2023 Yokohama Deck -Pikachu-",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1582,
+      "enName": "XY",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4154,
+      "enName": "XY Beginning Set",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1637,
+      "enName": "XY Kalos Starter Set: Chespin Theme Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1631,
+      "enName": "XY Trainer Kit",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1632,
+      "enName": "XY Trainer Kit: Bisharp and Wigglytuff",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1683,
+      "enName": "XY Trainer Kit: Latias and Latios",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 1707,
+      "enName": "XY Trainer Kit: Pikachu Libre & Suicune",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5685,
+      "enName": "Yamabuki City Gym",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 3605,
+      "enName": "Zacian + Zamazenta BOX",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 4084,
+      "enName": "Zygarde EX Perfect Battle Deck",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 2921,
+      "enName": "Épée et Bouclier",
+      "abbreviation": null
+    },
+    {
+      "idExpansion": 5223,
+      "enName": "Écarlate et Violet",
+      "abbreviation": null
+    }
+  ]
+}
