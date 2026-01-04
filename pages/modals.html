@@ -1,0 +1,126 @@
+<!-- modals.html -->
+<!-- Add Card Modal with TCGdex search integration -->
+<div id="add-card-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-2xl overflow-auto max-h-[90vh]">
+    <div class="p-6">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter une carte</h3>
+        <button id="close-add-card-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- TCGdex Search Section -->
+      <div class="mb-4 border rounded-md p-4 bg-gray-50 dark:bg-gray-900">
+        <h4 class="font-semibold mb-2 text-gray-800 dark:text-white">Importer depuis TCGdex</h4>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-3">
+          <select id="tcgdex-language-select" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+            <!-- languages populated by JS -->
+          </select>
+
+          <select id="tcgdex-series-select" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+            <option value="">Toutes les séries</option>
+          </select>
+
+          <select id="tcgdex-set-select" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+            <option value="">Tous les sets</option>
+          </select>
+        </div>
+
+        <div class="flex gap-2 mb-3">
+          <input id="tcgdex-search-input" type="search" placeholder="Rechercher par nom de carte (ex: Pikachu)"
+            class="flex-1 px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+          <button id="tcgdex-search-btn" class="px-4 py-2 bg-pokemon-blue text-white rounded">Rechercher</button>
+        </div>
+
+        <div id="tcgdex-results" class="space-y-2 max-h-56 overflow-auto">
+          <!-- Results inserted here by JS -->
+        </div>
+
+        <p id="tcgdex-status" class="text-sm text-gray-500 mt-2"></p>
+      </div>
+
+      <!-- Manual add card form (prefilled if user selects a TCGdex result) -->
+      <form id="add-card-form" class="space-y-4 p-0">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <input type="text" name="name" id="add-card-name" placeholder="Nom de la carte" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+          <input type="text" name="number" id="add-card-number" placeholder="Numéro" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <select name="sets" id="add-card-sets-select" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+            <option value="">Choisir un set</option>
+            <!-- JS will insert set options (local or TCGdex) -->
+          </select>
+
+          <select name="set" id="add-card-setseries-select" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" disabled>
+            <option value="">Choisir une série</option>
+            <!-- Filled dynamically based on selected set group if needed -->
+          </select>
+        </div>
+
+        <input type="url" name="imageFront" id="add-card-image-front" placeholder="URL de l'image (Recto)" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="url" name="imageBack" id="add-card-image-back" placeholder="URL de l'image (Verso)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+          <input type="number" name="purchasePrice" id="add-card-purchase-price" placeholder="Prix d'achat (€)" required step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+          <select name="condition" id="add-card-condition" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+            <option value="Mint">Mint</option>
+            <option value="Near Mint">Near Mint</option>
+            <option value="Légerement Joué">Légerement Joué</option>
+            <option value="Modérément Joué">Modérément Joué</option>
+            <option value="Très Joué">Très Joué</option>
+          </select>
+        </div>
+
+        <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add Wishlist Item Modal -->
+<div id="add-wishlist-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+    <div class="p-6">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter à la Wishlist</h3>
+        <button id="close-add-wishlist-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="add-wishlist-item-form" class="space-y-4">
+        <input type="text" name="name" placeholder="Nom de la carte ou de l'item" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="text" name="description" placeholder="Sets / Série / Numéro / Description" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="url" name="image" placeholder="URL de l'image" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="number" name="targetPrice" placeholder="Prix cible (€)" step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à la Wishlist</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Add Sealed Item Modal -->
+<div id="add-sealed-item-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl w-full max-w-lg overflow-hidden">
+    <div class="p-6">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-xl font-bold text-gray-800 dark:text-white">Ajouter un item scellé</h3>
+        <button id="close-add-sealed-modal" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="add-sealed-item-form" class="space-y-4">
+        <input type="text" name="name" placeholder="Nom de l'item (ex: ETB Écarlate et Violet)" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="text" name="description" placeholder="Description (ex: Boîte de 36 boosters)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="url" name="image1" id="sealed-image1" placeholder="URL de l'image 1" required class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" data-image-index="1">
+        <input type="url" name="image2" id="sealed-image2" placeholder="URL de l'image 2 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="2">
+        <input type="url" name="image3" id="sealed-image3" placeholder="URL de l'image 3 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="3">
+        <input type="url" name="image4" id="sealed-image4" placeholder="URL de l'image 4 (optionnel)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white hidden" data-image-index="4">
+        <input type="number" name="quantity" placeholder="Quantité" required min="1" value="1" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <input type="number" name="purchasePrice" placeholder="Prix d'achat total (€)" step="0.01" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white">
+        <textarea name="notes" placeholder="Notes (état, provenance, etc.)" class="w-full px-3 py-2 rounded border dark:bg-gray-700 dark:text-white" rows="3"></textarea>
+        <button type="submit" class="w-full bg-pokemon-blue hover:bg-blue-700 text-white px-4 py-2 rounded">Ajouter à l'inventaire</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Card Detail Modal and Sealed Item Detail Modal unchanged from previous version -->

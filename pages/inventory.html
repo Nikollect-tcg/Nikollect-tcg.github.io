@@ -1,0 +1,25 @@
+<!-- inventory.html -->
+<section id="inventory-page" class="page-content">
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Mes Items Scellés</h2>
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden mb-8">
+    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div class="flex justify-between items-center">
+        <h3 class="text-lg font-medium text-gray-800 dark:text-white">Items scellés</h3>
+        <div class="flex space-x-2">
+          <button id="sealed-items-view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md"><i class="fas fa-th-large"></i></button>
+          <button id="sealed-items-view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md"><i class="fas fa-list"></i></button>
+        </div>
+      </div>
+
+      <div id="sealed-items-empty-message" class="hidden mt-4 text-gray-500 dark:text-gray-400">Votre inventaire d'items scellés est vide.</div>
+    </div>
+
+    <div id="sealed-items-container" class="p-4 grid grid-cols-1 gap-4">
+      <!-- Les items scellés seront générés ici -->
+    </div>
+  </div>
+
+  <button id="add-sealed-item-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+    <i class="fas fa-plus"></i>
+  </button>
+</section>
