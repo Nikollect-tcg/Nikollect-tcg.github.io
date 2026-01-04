@@ -1,0 +1,39 @@
+<!-- collection.html -->
+<section id="collection-page" class="page-content">
+  <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">Mes cartes</h2>
+  <div class="bg-white dark:bg-gray-800 rounded-lg shadow overflow-hidden mb-8">
+    <div class="p-6 border-b border-gray-200 dark:border-gray-700">
+      <div class="flex justify-between items-center">
+        <h3 class="text-lg font-medium text-gray-800 dark:text-white">Mes cartes</h3>
+        <div class="flex space-x-2">
+          <button id="update-prices-btn" class="px-3 py-1 bg-green-500 text-white rounded-md hover:bg-green-600 transition" title="Valoriser via TCGdex (à implémenter)">
+            <i class="fas fa-sync-alt"></i> Valoriser
+          </button>
+          <button id="view-grid" class="px-3 py-1 bg-pokemon-blue text-white rounded-md"><i class="fas fa-th-large"></i></button>
+          <button id="view-list" class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md"><i class="fas fa-list"></i></button>
+          <select id="sets-filter" class="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-md px-3 py-2 text-sm">
+            <option value="all">Tous les sets</option>
+            <option value="ev">Écarlate et Violet</option>
+            <option value="eb">Épée et Bouclier</option>
+            <option value="sl">Soleil et Lune</option>
+            <option value="xy">XY</option>
+            <option value="bw">Noir et Blanc</option>
+            <option value="ex">Ex</option>
+            <option value="pr">Promos</option>
+            <option value="di">Divers</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="collection-empty-message" class="hidden mt-4 text-gray-500 dark:text-gray-400">Votre collection est vide.</div>
+    </div>
+
+    <div id="collection-container" class="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <!-- Collection items will be generated here -->
+    </div>
+  </div>
+
+  <button id="add-card-btn" class="fixed bottom-6 right-6 z-40 bg-pokemon-red hover:bg-red-700 text-white p-4 rounded-full shadow-lg text-xl">
+    <i class="fas fa-plus"></i>
+  </button>
+</section>
